@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/* frontend/src/index.css */
+
+/* ── THEMES ── */
+[data-theme="dark"] {
+  --bg: #141414;
+  --ink: #e8e4dc;
+  --mid: #666;
+  --faint: #2a2a2a;
+}
+[data-theme="sepia"] {
+  --bg: #f5efe6;
+  --ink: #2c1f0e;
+  --mid: #9a7f5e;
+  --faint: #ddd0be;
+}
+[data-theme="slate"] {
+  --bg: #0f1520;
+  --ink: #c8d8e8;
+  --mid: #4a6070;
+  --faint: #1e2d3d;
+}
+[data-theme="moss"] {
+  --bg: #f2f4f0;
+  --ink: #1a2218;
+  --mid: #7a9070;
+  --faint: #d4dcd0;
+}
+
+html {
+  font-size: 17px;
+  margin: 0;
+  padding: 0;
+  scrollbar-gutter: stable;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --bg: #fafaf8;
+  --ink: #111111;
+  --mid: #888888;
+  --faint: #dddddd;
+  --serif: "Newsreader", Georgia, serif;
+  --mono: "JetBrains Mono", monospace;
+}
+
+.nav-text {
+  color: var(--mid);
+  font-family: var(--mono);
+}
+.active {
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.theme-swatch {
+  border: 1px solid var(--faint);
+  flex-shrink: 0;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}

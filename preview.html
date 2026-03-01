@@ -1,0 +1,1782 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Name</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #fafaf8;
+        --ink: #111111;
+        --mid: #888;
+        --faint: #ddd;
+        --serif: "Newsreader", Georgia, serif;
+      }
+
+      /* ── THEMES ── */
+      [data-theme="dark"] {
+        --bg: #141414;
+        --ink: #e8e4dc;
+        --mid: #666;
+        --faint: #2a2a2a;
+      }
+      [data-theme="sepia"] {
+        --bg: #f5efe6;
+        --ink: #2c1f0e;
+        --mid: #9a7f5e;
+        --faint: #ddd0be;
+      }
+      [data-theme="slate"] {
+        --bg: #0f1520;
+        --ink: #c8d8e8;
+        --mid: #4a6070;
+        --faint: #1e2d3d;
+      }
+      [data-theme="moss"] {
+        --bg: #f2f4f0;
+        --ink: #1a2218;
+        --mid: #7a9070;
+        --faint: #d4dcd0;
+      }
+
+      html {
+        font-size: 17px;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--serif);
+        font-weight: 300;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── OUTER SHELL ── */
+      .shell {
+        min-height: 100vh;
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* ── TOP BAR ── */
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem 0 3rem;
+        position: sticky;
+        top: 0;
+        background: var(--bg);
+        z-index: 10;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        list-style: none;
+      }
+
+      .nav a {
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        color: var(--mid);
+        text-decoration: none;
+        letter-spacing: 0.03em;
+        padding: 0.2rem 0.6rem;
+        transition: color 0.15s;
+      }
+      .nav a:hover,
+      .nav a.active {
+        color: var(--ink);
+      }
+      .nav a.active {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .status {
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        color: var(--mid);
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+
+      .dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #22c55e;
+        animation: pulse 2.5s ease infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.25;
+        }
+      }
+
+      /* Hamburger */
+      .hamburger {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 2px;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .hamburger span {
+        display: block;
+        width: 18px;
+        height: 1px;
+        background: var(--ink);
+        transition: all 0.2s;
+      }
+      .hamburger.open span:nth-child(1) {
+        transform: translateY(5px) rotate(45deg);
+      }
+      .hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.open span:nth-child(3) {
+        transform: translateY(-5px) rotate(-45deg);
+      }
+
+      .mobile-nav {
+        display: none;
+        padding-bottom: 1.5rem;
+      }
+      .mobile-nav.open {
+        display: flex;
+        flex-direction: column;
+        gap: 0.1rem;
+      }
+      .mobile-nav a {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--mid);
+        text-decoration: none;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--faint);
+      }
+      .mobile-nav a.active {
+        color: var(--ink);
+      }
+
+      /* ── PAGES ── */
+      .page {
+        display: none;
+        padding-bottom: 5rem;
+      }
+      .page.active {
+        display: block;
+        animation: appear 0.25s ease;
+      }
+      @keyframes appear {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* ── HOME ── */
+      .name-block {
+        margin-bottom: 2.5rem;
+      }
+
+      .name {
+        font-size: clamp(3.2rem, 10vw, 5.2rem);
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: -0.03em;
+        margin-bottom: 0.2rem;
+      }
+
+      .name em {
+        font-style: italic;
+      }
+
+      .cursor {
+        display: inline-block;
+        width: 3px;
+        height: 0.9em;
+        background: var(--ink);
+        margin-left: 4px;
+        vertical-align: middle;
+        animation: blink 1s step-end infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      .role {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--mid);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .intro {
+        font-size: 1.15rem;
+        line-height: 1.75;
+        font-weight: 300;
+        margin-bottom: 1.5rem;
+        max-width: 520px;
+      }
+
+      .intro strong {
+        font-weight: 500;
+      }
+
+      .currently {
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        color: var(--mid);
+        line-height: 2;
+        margin-bottom: 2.5rem;
+      }
+
+      .currently span {
+        color: var(--ink);
+      }
+
+      .resume-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        color: var(--mid);
+        text-decoration: none;
+        border-bottom: 1px solid var(--faint);
+        padding-bottom: 0.1rem;
+        letter-spacing: 0.04em;
+        transition:
+          color 0.15s,
+          border-color 0.15s;
+        margin-top: 0.5rem;
+      }
+      .resume-link:hover {
+        color: var(--ink);
+        border-color: var(--ink);
+      }
+
+      /* ── THEME PICKER ── */
+      .theme-wrap {
+        position: relative;
+        display: inline-block;
+        margin-top: 0.6rem;
+        margin-left: 1.5rem;
+      }
+
+      .theme-trigger {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        color: var(--mid);
+        background: none;
+        border: none;
+        border-bottom: 1px solid var(--faint);
+        padding: 0 0 0.1rem;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+        transition:
+          color 0.15s,
+          border-color 0.15s;
+      }
+      .theme-trigger:hover {
+        color: var(--ink);
+        border-color: var(--ink);
+      }
+      .theme-trigger .caret {
+        font-size: 0.5rem;
+        transition: transform 0.2s;
+        display: inline-block;
+      }
+      .theme-wrap.open .caret {
+        transform: rotate(180deg);
+      }
+
+      .theme-dropdown {
+        position: absolute;
+        top: calc(100% + 0.6rem);
+        left: 0;
+        background: var(--bg);
+        border: 1px solid var(--faint);
+        padding: 0.3rem 0;
+        min-width: 130px;
+        z-index: 50;
+        display: none;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      }
+      .theme-wrap.open .theme-dropdown {
+        display: block;
+        animation: dropIn 0.15s ease;
+      }
+      @keyframes dropIn {
+        from {
+          opacity: 0;
+          transform: translateY(-4px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .theme-opt {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        width: 100%;
+        padding: 0.5rem 0.85rem;
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.04em;
+        color: var(--mid);
+        background: none;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        transition:
+          color 0.12s,
+          background 0.12s;
+      }
+      .theme-opt:hover {
+        color: var(--ink);
+        background: var(--faint);
+      }
+      .theme-opt.active {
+        color: var(--ink);
+      }
+
+      .theme-swatch {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 1px solid var(--faint);
+        flex-shrink: 0;
+      }
+
+      .divider {
+        border: none;
+        border-top: 1px solid var(--faint);
+        margin: 2.5rem 0;
+      }
+
+      /* Skills inline */
+      .skills-block {
+        margin-bottom: 0;
+      }
+
+      .skill-row {
+        display: flex;
+        gap: 0;
+        padding: 0.7rem 0;
+        border-bottom: 1px solid var(--faint);
+        align-items: baseline;
+        flex-wrap: wrap;
+      }
+      .skill-row:first-child {
+        border-top: 1px solid var(--faint);
+      }
+
+      .skill-area {
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--mid);
+        width: 90px;
+        flex-shrink: 0;
+      }
+
+      .skill-items {
+        font-size: 0.93rem;
+        color: var(--ink);
+        line-height: 1.5;
+      }
+
+      /* Education */
+      .edu-block {
+        margin-top: 0;
+      }
+
+      .edu-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid var(--faint);
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .edu-row:first-child {
+        border-top: 1px solid var(--faint);
+      }
+
+      .edu-title {
+        font-size: 0.97rem;
+        font-weight: 400;
+      }
+      .edu-sub {
+        font-size: 0.82rem;
+        color: var(--mid);
+        margin-top: 0.1rem;
+      }
+
+      .edu-year {
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        color: var(--mid);
+        white-space: nowrap;
+      }
+
+      /* Section heading */
+      .section-head {
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--mid);
+        margin-bottom: 1.25rem;
+      }
+
+      /* Featured projects */
+      .featured-project {
+        padding: 1.4rem 0;
+        border-bottom: 1px solid var(--faint);
+      }
+      .featured-project:first-child {
+        border-top: 1px solid var(--faint);
+      }
+
+      .fp-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+        margin-bottom: 0.4rem;
+      }
+
+      .fp-num {
+        font-family: var(--mono);
+        font-size: 0.58rem;
+        color: var(--faint);
+        flex-shrink: 0;
+        padding-top: 0.15rem;
+      }
+
+      .fp-title {
+        font-size: 1.08rem;
+        font-weight: 500;
+        flex: 1;
+        line-height: 1.3;
+      }
+
+      .fp-year {
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        color: var(--mid);
+        white-space: nowrap;
+      }
+
+      .fp-desc {
+        font-size: 0.88rem;
+        color: var(--mid);
+        line-height: 1.65;
+        margin-bottom: 0.65rem;
+        padding-left: 1.6rem;
+      }
+
+      .fp-links {
+        display: flex;
+        gap: 1.2rem;
+        padding-left: 1.6rem;
+      }
+
+      .fp-link {
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        color: var(--mid);
+        text-decoration: none;
+        letter-spacing: 0.04em;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        transition: color 0.15s;
+      }
+      .fp-link:hover {
+        color: var(--ink);
+      }
+
+      /* ── DETAIL PANEL ── */
+      .detail-panel {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        max-width: 640px;
+        background: var(--bg);
+        z-index: 200;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        border-left: 1px solid var(--faint);
+      }
+      .detail-panel.open {
+        transform: translateX(0);
+      }
+
+      .detail-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.15);
+        z-index: 199;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.35s;
+      }
+      .detail-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .detail-inner {
+        padding: 2rem 2.5rem 5rem;
+        max-width: 600px;
+      }
+
+      .detail-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        color: var(--mid);
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        letter-spacing: 0.04em;
+        margin-bottom: 2.5rem;
+        transition: color 0.15s;
+      }
+      .detail-back:hover {
+        color: var(--ink);
+      }
+
+      .detail-kind {
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--mid);
+        margin-bottom: 0.75rem;
+      }
+
+      .detail-title {
+        font-size: clamp(1.6rem, 5vw, 2.4rem);
+        font-weight: 400;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+      }
+      .detail-title em {
+        font-style: italic;
+      }
+
+      .detail-meta {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        color: var(--mid);
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--faint);
+        margin-bottom: 2rem;
+      }
+
+      /* Project detail */
+      .detail-links {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+      .detail-extlink {
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        text-decoration: none;
+        color: var(--bg);
+        background: var(--ink);
+        padding: 0.5rem 1rem;
+        letter-spacing: 0.06em;
+        transition: opacity 0.15s;
+      }
+      .detail-extlink:hover {
+        opacity: 0.7;
+      }
+      .detail-extlink.ghost {
+        background: none;
+        color: var(--ink);
+        border: 1px solid var(--faint);
+      }
+      .detail-extlink.ghost:hover {
+        border-color: var(--ink);
+        opacity: 1;
+      }
+
+      .detail-section-label {
+        font-family: var(--mono);
+        font-size: 0.58rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--mid);
+        margin: 2rem 0 0.75rem;
+      }
+
+      .detail-body p {
+        font-size: 0.97rem;
+        line-height: 1.8;
+        color: var(--ink);
+        margin-bottom: 1.25rem;
+      }
+      .detail-body p:last-child {
+        margin-bottom: 0;
+      }
+
+      .detail-body h3 {
+        font-family: var(--serif);
+        font-size: 1.1rem;
+        font-weight: 500;
+        margin: 1.75rem 0 0.6rem;
+      }
+
+      .detail-body blockquote {
+        border-left: 2px solid var(--faint);
+        padding-left: 1rem;
+        margin: 1.5rem 0;
+        font-style: italic;
+        color: var(--mid);
+        font-size: 0.95rem;
+        line-height: 1.75;
+      }
+
+      .detail-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 1.5rem;
+      }
+      .detail-chip {
+        font-family: var(--mono);
+        font-size: 0.58rem;
+        padding: 0.2rem 0.5rem;
+        border: 1px solid var(--faint);
+        color: var(--mid);
+      }
+
+      /* ── PLOGS ── */
+      .plogs-intro {
+        margin-bottom: 2rem;
+      }
+
+      .plogs-intro h2 {
+        font-size: clamp(1.6rem, 5vw, 2.2rem);
+        font-weight: 400;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.5rem;
+      }
+      .plogs-intro h2 em {
+        font-style: italic;
+      }
+
+      .plogs-intro p {
+        font-size: 0.9rem;
+        color: var(--mid);
+      }
+
+      .filter-row {
+        display: flex;
+        gap: 0;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid var(--faint);
+      }
+
+      .filter {
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        padding: 0.6rem 0;
+        margin-right: 1.5rem;
+        background: none;
+        border: none;
+        border-bottom: 1.5px solid transparent;
+        color: var(--mid);
+        cursor: pointer;
+        transition: all 0.15s;
+        margin-bottom: -1px;
+      }
+      .filter:hover {
+        color: var(--ink);
+      }
+      .filter.active {
+        color: var(--ink);
+        border-bottom-color: var(--ink);
+      }
+
+      /* Plog list — journal index style */
+      .plog-entry {
+        padding: 1.2rem 0;
+        border-bottom: 1px solid var(--faint);
+        cursor: pointer;
+      }
+      .plog-entry:first-child {
+        border-top: 1px solid var(--faint);
+      }
+
+      .plog-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+        margin-bottom: 0.35rem;
+      }
+
+      .plog-title {
+        font-size: 1.05rem;
+        font-weight: 400;
+        line-height: 1.3;
+        transition: text-decoration 0.1s;
+      }
+      .plog-entry:hover .plog-title {
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+      }
+
+      .plog-date {
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        color: var(--mid);
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .plog-excerpt {
+        font-size: 0.85rem;
+        color: var(--mid);
+        line-height: 1.6;
+        margin-bottom: 0.5rem;
+      }
+
+      .plog-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .plog-kind {
+        font-family: var(--mono);
+        font-size: 0.55rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--mid);
+        border: 1px solid var(--faint);
+        padding: 0.15rem 0.4rem;
+      }
+
+      .plog-chip {
+        font-family: var(--mono);
+        font-size: 0.55rem;
+        color: var(--mid);
+      }
+
+      /* ── ABOUT ── */
+      .about-intro {
+        font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+        line-height: 1.8;
+        margin-bottom: 2.5rem;
+      }
+      .about-intro em {
+        font-style: italic;
+      }
+
+      .tl {
+        margin-top: 0;
+      }
+
+      .tl-item {
+        display: flex;
+        gap: 1.5rem;
+        padding: 0.9rem 0;
+        border-bottom: 1px solid var(--faint);
+        align-items: baseline;
+      }
+      .tl-item:first-child {
+        border-top: 1px solid var(--faint);
+      }
+
+      .tl-year {
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        color: var(--mid);
+        white-space: nowrap;
+        width: 70px;
+        flex-shrink: 0;
+        padding-top: 0.15rem;
+      }
+
+      .tl-body {
+      }
+      .tl-event {
+        font-size: 0.97rem;
+        font-weight: 400;
+        margin-bottom: 0.15rem;
+      }
+      .tl-detail {
+        font-size: 0.82rem;
+        color: var(--mid);
+        line-height: 1.55;
+      }
+
+      /* ── CONTACT ── */
+      .contact-intro {
+        margin-bottom: 2.5rem;
+      }
+
+      .contact-intro h2 {
+        font-size: clamp(2rem, 7vw, 3.5rem);
+        font-weight: 400;
+        letter-spacing: -0.03em;
+        line-height: 1;
+        margin-bottom: 1rem;
+      }
+      .contact-intro h2 em {
+        font-style: italic;
+      }
+      .contact-intro p {
+        font-size: 0.93rem;
+        color: var(--mid);
+        line-height: 1.7;
+      }
+
+      .contact-list {
+        margin-bottom: 2.5rem;
+      }
+
+      .c-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--faint);
+        text-decoration: none;
+        color: var(--ink);
+        transition: padding-left 0.2s;
+      }
+      .c-item:first-child {
+        border-top: 1px solid var(--faint);
+      }
+      .c-item:hover {
+        padding-left: 0.35rem;
+      }
+
+      .c-platform {
+        font-family: var(--mono);
+        font-size: 0.58rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--mid);
+        margin-bottom: 0.15rem;
+      }
+      .c-handle {
+        font-size: 0.97rem;
+        font-weight: 400;
+      }
+      .c-arrow {
+        color: var(--mid);
+        font-size: 0.9rem;
+      }
+
+      /* Form */
+      .field {
+        margin-bottom: 1rem;
+      }
+      .field label {
+        display: block;
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--mid);
+        margin-bottom: 0.3rem;
+      }
+      .field input,
+      .field textarea {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid var(--faint);
+        background: none;
+        padding: 0.5rem 0;
+        font-family: var(--serif);
+        font-size: 0.93rem;
+        font-weight: 300;
+        color: var(--ink);
+        outline: none;
+        transition: border-color 0.2s;
+        resize: none;
+      }
+      .field input:focus,
+      .field textarea:focus {
+        border-bottom-color: var(--ink);
+      }
+      .field textarea {
+        height: 80px;
+      }
+
+      .send-btn {
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 0.7rem 1.5rem;
+        background: var(--ink);
+        color: var(--bg);
+        border: none;
+        cursor: pointer;
+        margin-top: 0.5rem;
+        transition: opacity 0.2s;
+      }
+      .send-btn:hover {
+        opacity: 0.75;
+      }
+
+      /* ── FOOTER ── */
+      .foot {
+        padding: 2rem 0;
+        border-top: 1px solid var(--faint);
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .foot span {
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        color: var(--mid);
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 540px) {
+        html {
+          font-size: 16px;
+        }
+        .shell {
+          padding: 0 1.25rem;
+        }
+        .topbar {
+          padding: 1.5rem 0 0;
+          flex-wrap: wrap;
+          gap: 0.75rem;
+        }
+        .nav {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .tl-item {
+          flex-direction: column;
+          gap: 0.25rem;
+        }
+        .tl-year {
+          width: auto;
+        }
+        .skill-area {
+          width: 72px;
+          font-size: 0.58rem;
+        }
+        .edu-row {
+          flex-direction: column;
+          gap: 0.15rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <!-- TOP BAR -->
+      <div class="topbar">
+        <ul class="nav">
+          <li>
+            <a
+              href="#"
+              class="active"
+              data-page="home"
+              onclick="
+                go('home');
+                return false;
+              "
+              >home</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              data-page="plogs"
+              onclick="
+                go('plogs');
+                return false;
+              "
+              >plogs</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              data-page="about"
+              onclick="
+                go('about');
+                return false;
+              "
+              >about</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              data-page="contact"
+              onclick="
+                go('contact');
+                return false;
+              "
+              >contact</a
+            >
+          </li>
+        </ul>
+        <div
+          id="themechanger"
+          style="display: flex; align-items: center; gap: 20px"
+        >
+          <span class="theme-wrap" id="themeWrap" style="margin-top: 0px">
+            <button class="theme-trigger" id="themeTrigger">
+              ▧ theme <span class="caret">▾</span>
+            </button>
+            <div class="theme-dropdown" id="themeDropdown">
+              <button class="theme-opt active" data-theme="light">
+                <span
+                  class="theme-swatch"
+                  style="background: #fafaf8; border-color: #ddd"
+                ></span
+                >light
+              </button>
+              <button class="theme-opt" data-theme="dark">
+                <span
+                  class="theme-swatch"
+                  style="background: #141414; border-color: #2a2a2a"
+                ></span
+                >dark
+              </button>
+              <button class="theme-opt" data-theme="sepia">
+                <span
+                  class="theme-swatch"
+                  style="background: #f5efe6; border-color: #ddd0be"
+                ></span
+                >sepia
+              </button>
+              <button class="theme-opt" data-theme="slate">
+                <span
+                  class="theme-swatch"
+                  style="background: #0f1520; border-color: #1e2d3d"
+                ></span
+                >slate
+              </button>
+              <button class="theme-opt" data-theme="moss">
+                <span
+                  class="theme-swatch"
+                  style="background: #f2f4f0; border-color: #d4dcd0"
+                ></span
+                >moss
+              </button>
+            </div>
+          </span>
+          <div class="status"><span class="dot"></span> open to work</div>
+          <button class="hamburger" id="hb" onclick="toggleMobile()">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-nav" id="mobileNav">
+        <a
+          href="#"
+          data-page="home"
+          class="active"
+          onclick="
+            go('home');
+            toggleMobile();
+            return false;
+          "
+          >home</a
+        >
+        <a
+          href="#"
+          data-page="plogs"
+          onclick="
+            go('plogs');
+            toggleMobile();
+            return false;
+          "
+          >plogs</a
+        >
+        <a
+          href="#"
+          data-page="about"
+          onclick="
+            go('about');
+            toggleMobile();
+            return false;
+          "
+          >about</a
+        >
+        <a
+          href="#"
+          data-page="contact"
+          onclick="
+            go('contact');
+            toggleMobile();
+            return false;
+          "
+          >contact</a
+        >
+      </div>
+
+      <!-- ═══ HOME ═══ -->
+      <div class="page active" id="home">
+        <div class="name-block">
+          <div class="name"><em>Your</em> Name<span class="cursor"></span></div>
+          <div class="role">Full-Stack Developer &amp; Designer</div>
+        </div>
+
+        <p class="intro">
+          I build things that <strong>work beautifully</strong> and look like
+          they were meant to exist. Three years of shipping products, writing
+          systems, and caring about the details most people skip.
+        </p>
+
+        <div class="currently">
+          <div>
+            Currently&nbsp;&nbsp;&nbsp;<span
+              >Senior Developer at Company Name</span
+            >
+          </div>
+          <div>
+            Based in&nbsp;&nbsp;&nbsp;&nbsp;<span>Your City, Country</span>
+          </div>
+          <div>
+            Working on&nbsp;<span>distributed systems + a side project</span>
+          </div>
+        </div>
+
+        <div
+          style="display: flex; align-items: baseline; gap: 0; flex-wrap: wrap"
+        >
+          <a href="your-resume.pdf" download class="resume-link"
+            >↓ download résumé</a
+          >
+        </div>
+
+        <hr class="divider" />
+
+        <div class="section-head">Featured Work</div>
+        <div class="featured-block">
+          <div class="featured-project">
+            <div class="fp-top">
+              <span class="fp-num">01</span>
+              <div class="fp-title">Real-Time Collaboration Tool</div>
+              <div class="fp-year">2024</div>
+            </div>
+            <div class="fp-desc">
+              Figma-like editor with WebSockets, conflict resolution, and live
+              cursors. Built from scratch — 200+ users in the first month. The
+              hardest part was CRDT-based state sync without locking up the UI.
+            </div>
+            <div class="fp-links">
+              <a href="#" class="fp-link">↗ live demo</a>
+              <a href="#" class="fp-link">↗ github</a>
+            </div>
+          </div>
+
+          <div class="featured-project">
+            <div class="fp-top">
+              <span class="fp-num">02</span>
+              <div class="fp-title">Design System from Scratch</div>
+              <div class="fp-year">2024</div>
+            </div>
+            <div class="fp-desc">
+              A fully documented React component library adopted across 3
+              internal products. Cut design inconsistencies by 70% and halved
+              the time it took devs to build new features.
+            </div>
+            <div class="fp-links">
+              <a href="#" class="fp-link">↗ storybook</a>
+              <a href="#" class="fp-link">↗ github</a>
+            </div>
+          </div>
+
+          <div class="featured-project">
+            <div class="fp-top">
+              <span class="fp-num">03</span>
+              <div class="fp-title">CLI Tool for Git Workflows</div>
+              <div class="fp-year">2023</div>
+            </div>
+            <div class="fp-desc">
+              Automates branching strategies, commit conventions, and PR
+              generation. Got featured on Hacker News and crossed 500 stars in a
+              weekend. Still actively maintained.
+            </div>
+            <div class="fp-links">
+              <a href="#" class="fp-link">↗ github ★500</a>
+            </div>
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="section-head">Skills</div>
+        <div class="skills-block">
+          <div class="skill-row">
+            <div class="skill-area">Frontend</div>
+            <div class="skill-items">
+              React, Next.js, TypeScript, CSS, Figma
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-area">Backend</div>
+            <div class="skill-items">
+              Node.js, Python, FastAPI, PostgreSQL, Redis
+            </div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-area">DevOps</div>
+            <div class="skill-items">Docker, AWS, Vercel, CI/CD, Git</div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-area">Other</div>
+            <div class="skill-items">System design, REST, GraphQL, Agile</div>
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <div class="section-head">Education</div>
+        <div class="edu-block">
+          <div class="edu-row">
+            <div>
+              <div class="edu-title">B.Sc. Computer Science</div>
+              <div class="edu-sub">Your University — Software Engineering</div>
+            </div>
+            <div class="edu-year">2017 – 2021</div>
+          </div>
+          <div class="edu-row">
+            <div>
+              <div class="edu-title">AWS Certified Developer</div>
+              <div class="edu-sub">Associate Level</div>
+            </div>
+            <div class="edu-year">2022</div>
+          </div>
+          <div class="edu-row">
+            <div>
+              <div class="edu-title">Design — Self-taught</div>
+              <div class="edu-sub">Courses, books, obsessive practice</div>
+            </div>
+            <div class="edu-year">Ongoing</div>
+          </div>
+        </div>
+
+        <div class="foot">
+          <span>© 2025 Your Name</span>
+          <span>made by hand</span>
+        </div>
+      </div>
+
+      <!-- ═══ PLOGS ═══ -->
+      <div class="page" id="plogs">
+        <div class="plogs-intro">
+          <h2>Things I've built<br /><em>&amp; written.</em></h2>
+          <p>Projects, essays, and experiments. In progress and shipped.</p>
+        </div>
+
+        <div class="filter-row">
+          <button class="filter active" data-f="all">All</button>
+          <button class="filter" data-f="project">Projects</button>
+          <button class="filter" data-f="blog">Blog</button>
+        </div>
+
+        <div id="plogList">
+          <div class="plog-entry" data-type="project" data-id="design-system">
+            <div class="plog-top">
+              <div class="plog-title">Design System from Scratch</div>
+              <div class="plog-date">2024</div>
+            </div>
+            <div class="plog-excerpt">
+              React component library for 3 products. Cut design inconsistencies
+              by 70% and halved frontend dev time.
+            </div>
+            <div class="plog-meta">
+              <span class="plog-kind">Project</span>
+              <span class="plog-chip">React · TypeScript · Storybook</span>
+            </div>
+          </div>
+
+          <div class="plog-entry" data-type="blog" data-id="css-frameworks">
+            <div class="plog-top">
+              <div class="plog-title">Why I Stopped Using CSS Frameworks</div>
+              <div class="plog-date">Jan 2025</div>
+            </div>
+            <div class="plog-excerpt">
+              After years of Tailwind, I went back to vanilla CSS. Here's what I
+              learned about actually understanding the web.
+            </div>
+            <div class="plog-meta">
+              <span class="plog-kind">Blog</span>
+              <span class="plog-chip">5 min · CSS · Opinion</span>
+            </div>
+          </div>
+
+          <div class="plog-entry" data-type="project" data-id="collab-tool">
+            <div class="plog-top">
+              <div class="plog-title">Real-Time Collaboration Tool</div>
+              <div class="plog-date">2024</div>
+            </div>
+            <div class="plog-excerpt">
+              Figma-like editor with WebSockets, conflict resolution, and live
+              cursors. 200+ users in the first month.
+            </div>
+            <div class="plog-meta">
+              <span class="plog-kind">Project</span>
+              <span class="plog-chip">Open Source · WebSockets · Next.js</span>
+            </div>
+          </div>
+
+          <div class="plog-entry" data-type="blog" data-id="nodejs-perf">
+            <div class="plog-top">
+              <div class="plog-title">
+                Everything I Know About Node.js Performance
+              </div>
+              <div class="plog-date">Nov 2024</div>
+            </div>
+            <div class="plog-excerpt">
+              Event loop, worker threads, clustering, memory leaks — what
+              actually makes Node fast (or slow).
+            </div>
+            <div class="plog-meta">
+              <span class="plog-kind">Blog</span>
+              <span class="plog-chip">12 min · Node.js · Performance</span>
+            </div>
+          </div>
+
+          <div class="plog-entry" data-type="project" data-id="cli-tool">
+            <div class="plog-top">
+              <div class="plog-title">CLI Tool for Git Workflows</div>
+              <div class="plog-date">2023</div>
+            </div>
+            <div class="plog-excerpt">
+              Automates branching, commit conventions, and PR generation. 500+
+              GitHub stars.
+            </div>
+            <div class="plog-meta">
+              <span class="plog-kind">Project</span>
+              <span class="plog-chip">Open Source ★500 · Python · CLI</span>
+            </div>
+          </div>
+
+          <div class="plog-entry" data-type="blog" data-id="boring-arch">
+            <div class="plog-top">
+              <div class="plog-title">
+                The Boring Architecture That Saved Us
+              </div>
+              <div class="plog-date">Oct 2024</div>
+            </div>
+            <div class="plog-excerpt">
+              We chose boring tech over microservices. A year later our small
+              team ships faster than teams 3× our size.
+            </div>
+            <div class="plog-meta">
+              <span class="plog-kind">Blog</span>
+              <span class="plog-chip">8 min · Architecture · Opinion</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="foot">
+          <span>© 2025 Your Name</span>
+          <span>more on the way</span>
+        </div>
+      </div>
+
+      <!-- ═══ ABOUT ═══ -->
+      <div class="page" id="about">
+        <p class="about-intro">
+          I'm a developer who cares about <em>the craft</em>. Not just code that
+          works — code that's readable, maintainable, and kind to whoever opens
+          it next (usually me, six months later).
+        </p>
+        <p
+          style="
+            font-size: 0.93rem;
+            color: var(--mid);
+            line-height: 1.75;
+            margin-bottom: 2.5rem;
+          "
+        >
+          I started tinkering with HTML at 14 to make a fan site. That curiosity
+          never stopped. Today I build products real people use and still get a
+          kick every time something ships. Outside work: reading about system
+          design, over-engineering side projects, hiking, making unnecessarily
+          complex spreadsheets.
+        </p>
+
+        <div class="section-head">Timeline</div>
+        <div class="tl">
+          <div class="tl-item">
+            <div class="tl-year">2024 →</div>
+            <div class="tl-body">
+              <div class="tl-event">Senior Developer @ Company</div>
+              <div class="tl-detail">
+                Leading platform architecture, mentoring a team of four.
+              </div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">2022</div>
+            <div class="tl-body">
+              <div class="tl-event">First Open Source hit</div>
+              <div class="tl-detail">
+                CLI tool on Hacker News — 500+ stars overnight.
+              </div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">2021</div>
+            <div class="tl-body">
+              <div class="tl-event">Graduated, CS Degree</div>
+              <div class="tl-detail">
+                Distributed systems and HCI. Top of class.
+              </div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">2019</div>
+            <div class="tl-body">
+              <div class="tl-event">First design internship</div>
+              <div class="tl-detail">
+                Learned design and engineering are the same conversation.
+              </div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-year">2014</div>
+            <div class="tl-body">
+              <div class="tl-event">First line of code</div>
+              <div class="tl-detail">
+                A terrible fan site. Hooked immediately.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="foot">
+          <span>© 2025 Your Name</span>
+          <span>hello@yourname.com</span>
+        </div>
+      </div>
+
+      <!-- ═══ CONTACT ═══ -->
+      <div class="page" id="contact">
+        <div class="contact-intro">
+          <h2>Let's<br /><em>talk.</em></h2>
+          <p>Project, collab, or just saying hi — my inbox is open.</p>
+        </div>
+
+        <div class="contact-list">
+          <a href="mailto:hello@yourname.com" class="c-item">
+            <div>
+              <div class="c-platform">Email</div>
+              <div class="c-handle">hello@yourname.com</div>
+            </div>
+            <span class="c-arrow">↗</span>
+          </a>
+          <a href="#" class="c-item">
+            <div>
+              <div class="c-platform">GitHub</div>
+              <div class="c-handle">github.com/yourhandle</div>
+            </div>
+            <span class="c-arrow">↗</span>
+          </a>
+          <a href="#" class="c-item">
+            <div>
+              <div class="c-platform">LinkedIn</div>
+              <div class="c-handle">linkedin.com/in/yourname</div>
+            </div>
+            <span class="c-arrow">↗</span>
+          </a>
+          <a href="#" class="c-item">
+            <div>
+              <div class="c-platform">Twitter / X</div>
+              <div class="c-handle">@yourhandle</div>
+            </div>
+            <span class="c-arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="section-head">Or send a message</div>
+        <div class="field">
+          <label>Name</label><input type="text" placeholder="Jane Smith" />
+        </div>
+        <div class="field">
+          <label>Email</label
+          ><input type="email" placeholder="jane@example.com" />
+        </div>
+        <div class="field">
+          <label>Message</label
+          ><textarea placeholder="I have a project..."></textarea>
+        </div>
+        <button class="send-btn">Send →</button>
+
+        <div class="foot" style="margin-top: 3rem">
+          <span>© 2025 Your Name</span>
+          <span>made with care</span>
+        </div>
+      </div>
+    </div>
+    <!-- end shell -->
+
+    <!-- ═══ DETAIL PANEL ═══ -->
+    <div
+      class="detail-overlay"
+      id="detailOverlay"
+      onclick="closeDetail()"
+    ></div>
+    <div class="detail-panel" id="detailPanel">
+      <div class="detail-inner" id="detailContent"></div>
+    </div>
+
+    <script>
+      const plogs = {
+        "design-system": {
+          type: "project",
+          title: "Design System from Scratch",
+          date: "2024",
+          chips: ["React", "TypeScript", "Storybook", "Figma"],
+          github: "#",
+          live: "#",
+          liveLabel: "storybook ↗",
+          body: "<p>Three products, three different component styles, three teams arguing about button padding. The goal: one source of truth.</p><h3>The Problem</h3><p>Each product had its own button, its own modal, its own form input — all slightly different. New features took twice as long because every team was rebuilding the same primitives.</p><h3>What I Built</h3><p>A fully typed React component library, documented in Storybook, with a companion Figma kit that stayed in sync. Every component ships with accessibility, dark mode tokens, and tests.</p><blockquote>The real challenge wasn’t the code. It was convincing three teams with three different opinions to agree on what a “button” actually is.</blockquote><h3>The Result</h3><p>Design inconsistencies dropped by 70% in the first quarter. New features got measurably faster because devs could reach for components instead of building them.</p>",
+        },
+        "css-frameworks": {
+          type: "blog",
+          title: "Why I Stopped Using CSS Frameworks",
+          date: "January 2025",
+          readTime: "5 min read",
+          chips: ["CSS", "Opinion", "Frontend"],
+          body: "<p>I used Tailwind for two years. Before that, Bootstrap. They’re genuinely good tools. But I stopped, and here’s what happened.</p><h3>The Moment I Noticed</h3><p>I was debugging a layout bug and I had no idea what was happening. I knew the class names. I didn’t know CSS. There’s a difference, and I’d blurred it completely.</p><blockquote>Knowing a framework is not the same as understanding the thing it abstracts. I had mistaken fluency in Tailwind for fluency in CSS.</blockquote><h3>What Going Back Felt Like</h3><p>Painful at first. Then freeing. I started understanding why things behaved the way they did. I stopped copy-pasting and started writing CSS I could explain.</p><h3>The Tradeoff</h3><p>I’m slower on greenfield projects now. But I debug faster, write less CSS, and the code is more intentional. The point isn’t “vanilla CSS is better.” The point is: know what your tools are hiding from you.</p>",
+        },
+        "collab-tool": {
+          type: "project",
+          title: "Real-Time Collaboration Tool",
+          date: "2024",
+          chips: ["Next.js", "WebSockets", "CRDTs", "PostgreSQL"],
+          github: "#",
+          live: "#",
+          liveLabel: "live demo ↗",
+          body: "<p>I wanted to understand how tools like Figma handle collaborative editing. So I built one — not because I needed it, but because I needed to understand it.</p><h3>The Hard Part</h3><p>Conflict resolution. When two users edit simultaneously, whose change wins? I implemented a CRDT-based approach where both changes are preserved and merged deterministically.</p><blockquote>The hardest engineering problem I’ve faced: designing state that multiple users can modify simultaneously without corrupting each other’s work.</blockquote><h3>Live Cursors</h3><p>Broadcasting cursor position at 60fps to every client will destroy your server. Solution: throttle at the client, interpolate at the receiver. Smooth enough to feel alive, cheap enough to scale.</p><h3>Outcome</h3><p>200+ users in the first month with zero marketing — just a HN post. Open source and now a reference for people learning WebSocket architecture.</p>",
+        },
+        "nodejs-perf": {
+          type: "blog",
+          title: "Everything I Know About Node.js Performance",
+          date: "November 2024",
+          readTime: "12 min read",
+          chips: ["Node.js", "Performance", "Backend"],
+          body: "<p>Node.js is fast until it isn’t. Most of the time when it isn’t, it’s because of the event loop, memory, I/O, or CPU.</p><h3>The Event Loop Isn’t Magic</h3><p>Node runs JavaScript on a single thread. Fine for I/O-heavy work. CPU-heavy work blocks the event loop and makes every other request wait. CPU work belongs in a worker thread.</p><h3>Memory Leaks Are Quiet</h3><p>Most common source: event listeners that never get removed. Attach a listener inside a request handler, forget to clean it up, watch your memory grow 1KB per request until your server crashes at 3am Friday.</p><blockquote>Profile first. Guess second. Most Node.js performance problems are invisible until you measure them.</blockquote><h3>Clustering</h3><p>One Node process uses one CPU core. You probably have more. The cluster module distributes load across all cores. For most production setups, this is table stakes.</p>",
+        },
+        "cli-tool": {
+          type: "project",
+          title: "CLI Tool for Git Workflows",
+          date: "2023",
+          chips: ["Python", "CLI", "Git", "Open Source"],
+          github: "#",
+          body: "<p>Every team I’ve been on had the same problem: inconsistent branch names, vague commit messages, PRs with no description. Code review became archaeology. This tool was my fix.</p><h3>What It Does</h3><p>One command creates a correctly-named branch, pre-fills a commit template, and generates a PR description from your commit history. Conventions live in a single config file.</p><h3>The HN Moment</h3><p>Posted on a Tuesday evening expecting nothing. Wednesday morning: Hacker News front page, 500 stars, and a feature request list longer than the codebase.</p><blockquote>The best tools solve a problem so obvious that everyone wonders why it didn’t exist before.</blockquote><h3>Still Maintained</h3><p>It’s grown a small community. I still review PRs and cut releases. The project I’m most proud of — not because it’s technically impressive, but because people actually use it every day.</p>",
+        },
+        "boring-arch": {
+          type: "blog",
+          title: "The Boring Architecture That Saved Us",
+          date: "October 2024",
+          readTime: "8 min read",
+          chips: ["Architecture", "Opinion", "Backend"],
+          body: "<p>In 2022 our team was 4 engineers. We were being pitched on microservices. Service meshes. Kubernetes. We said no, and it was the best technical decision we ever made.</p><h3>What We Chose Instead</h3><p>A monolith. One PostgreSQL database. One Node.js server. Deployed on a single managed VM. It handled 10x our initial load without a single architectural change.</p><blockquote>Complexity has a carrying cost. Every abstraction you add is a debt your team pays every day in debugging time, onboarding time, and cognitive load.</blockquote><h3>What We Gained</h3><p>A new engineer could be productive on day one. No distributed tracing, no service discovery. The codebase was a single thing that fit in one person’s head.</p><h3>When Microservices Are Right</h3><p>At some scale, for some problems — they make sense. But that scale is much larger than most teams think, and most teams reach for them before they’re needed.</p>",
+        },
+      };
+
+      function go(id) {
+        closeDetail();
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        document
+          .querySelectorAll("[data-page]")
+          .forEach((a) => a.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+        document
+          .querySelectorAll('[data-page="' + id + '"]')
+          .forEach((a) => a.classList.add("active"));
+        window.scrollTo(0, 0);
+      }
+
+      function toggleMobile() {
+        document.getElementById("hb").classList.toggle("open");
+        document.getElementById("mobileNav").classList.toggle("open");
+      }
+
+      function openDetail(id) {
+        const d = plogs[id];
+        if (!d) return;
+        const panel = document.getElementById("detailPanel");
+        const overlay = document.getElementById("detailOverlay");
+        const content = document.getElementById("detailContent");
+        let html =
+          '<button class="detail-back" onclick="closeDetail()">← back to plogs</button>';
+        html +=
+          '<div class="detail-kind">' +
+          (d.type === "project" ? "Project" : "Blog Post") +
+          "</div>";
+        html += '<div class="detail-title">' + d.title + "</div>";
+        html += '<div class="detail-meta"><span>' + d.date + "</span>";
+        if (d.readTime) html += "<span>" + d.readTime + "</span>";
+        html += "</div>";
+        if (d.type === "project") {
+          html += '<div class="detail-links">';
+          if (d.live)
+            html +=
+              '<a href="' +
+              d.live +
+              '" target="_blank" class="detail-extlink">' +
+              (d.liveLabel || "live demo ↗") +
+              "</a>";
+          if (d.github)
+            html +=
+              '<a href="' +
+              d.github +
+              '" target="_blank" class="detail-extlink ghost">github ↗</a>';
+          html += "</div>";
+        }
+        html += '<div class="detail-body">' + d.body + "</div>";
+        html += '<div class="detail-chips">';
+        d.chips.forEach((c) => {
+          html += '<span class="detail-chip">' + c + "</span>";
+        });
+        html += "</div>";
+        content.innerHTML = html;
+        panel.scrollTop = 0;
+        overlay.classList.add("open");
+        panel.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeDetail() {
+        document.getElementById("detailPanel").classList.remove("open");
+        document.getElementById("detailOverlay").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeDetail();
+      });
+
+      document.querySelectorAll(".plog-entry").forEach((entry) => {
+        entry.addEventListener("click", function () {
+          openDetail(this.dataset.id);
+        });
+      });
+
+      document.querySelectorAll(".filter").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          document
+            .querySelectorAll(".filter")
+            .forEach((b) => b.classList.remove("active"));
+          this.classList.add("active");
+          const f = this.dataset.f;
+          document.querySelectorAll(".plog-entry").forEach((e) => {
+            e.style.display =
+              f === "all" || e.dataset.type === f ? "block" : "none";
+          });
+        });
+      });
+
+      // ── THEME PICKER ──
+      const themeWrap = document.getElementById("themeWrap");
+      const themeTrigger = document.getElementById("themeTrigger");
+
+      themeTrigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        themeWrap.classList.toggle("open");
+      });
+
+      document.addEventListener("click", () =>
+        themeWrap.classList.remove("open"),
+      );
+      themeWrap.addEventListener("click", (e) => e.stopPropagation());
+
+      document.querySelectorAll(".theme-opt").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const t = this.dataset.theme;
+          document.documentElement.setAttribute(
+            "data-theme",
+            t === "light" ? "" : t,
+          );
+          document
+            .querySelectorAll(".theme-opt")
+            .forEach((b) => b.classList.remove("active"));
+          this.classList.add("active");
+          themeWrap.classList.remove("open");
+        });
+      });
+    </script>
+  </body>
+</html>

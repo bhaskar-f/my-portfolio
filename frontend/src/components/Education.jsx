@@ -1,0 +1,46 @@
+export default function Educations() {
+  const cirtifications = [
+    {
+      degree: "B.Sc. Compute Science Honours",
+      field: "CoochBehar College, Coochbehar",
+      year: "2021 - 2024",
+    },
+    {
+      degree: "Full-Stack Development",
+      field: "By Harkirat Singh",
+      year: "Ongoing",
+    },
+    {
+      degree: "DSA",
+      field: "Geeks For Geeks",
+      year: "Ongoing",
+    },
+  ];
+
+  return (
+    <div>
+      {cirtifications.map((cirtification, index) => {
+        return (
+          <Education
+            key={index}
+            degree={cirtification.degree}
+            field={cirtification.field}
+            year={cirtification.year}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+function Education({ degree, field, year }) {
+  return (
+    <div className="flex justify-between py-2 border-b-[1px] border-[#f0d1ce] w-full last:border-b-2">
+      <div>
+        <h1 className=" text-[1rem] font-normal ">{degree}</h1>
+        <h4 className="text-[.88rem] text-zinc-500">{field} </h4>
+      </div>
+      <span className="nav-text text-[.65rem]">{year}</span>
+    </div>
+  );
+}
