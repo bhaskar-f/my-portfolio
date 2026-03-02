@@ -18,7 +18,7 @@ export const PLOG_ITEMS = [
         },
         {
           label: "github",
-          href: "https://github.com/",
+          href: "https://github.com/bhaskar-f",
           variant: "ghost",
         },
       ],
@@ -63,60 +63,60 @@ export const PLOG_ITEMS = [
       "Developed a real-time collaboration app with WebSocket transport, live cursors, and deterministic conflict resolution. Focused on low-latency sync, optimistic updates, and robust reconnect behavior for unstable networks.",
     tags: ["WebSockets", "Realtime", "State Sync", "Next.js"],
   },
-  {
-    id: "boring-architecture",
-    title: "The Boring Architecture That Saved Us",
-    type: "blog",
-    createdAt: "2025-10-06T12:05:00.000Z",
-    shortDescription:
-      "Why simple architecture outperformed unnecessary complexity.",
-    longDescription:
-      "Detailed how a monolith-first architecture improved delivery speed, observability, and reliability for a small team. Shared decision criteria for when to keep systems simple and when to split services intentionally.",
-    tags: ["Architecture", "Monolith", "Scalability", "Team Processes"],
-  },
+  // {
+  //   id: "boring-architecture",
+  //   title: "The Boring Architecture That Saved Us",
+  //   type: "blog",
+  //   createdAt: "2025-10-06T12:05:00.000Z",
+  //   shortDescription:
+  //     "Why simple architecture outperformed unnecessary complexity.",
+  //   longDescription:
+  //     "Detailed how a monolith-first architecture improved delivery speed, observability, and reliability for a small team. Shared decision criteria for when to keep systems simple and when to split services intentionally.",
+  //   tags: ["Architecture", "Monolith", "Scalability", "Team Processes"],
+  // },
   {
     id: "second-brain",
-    title: "Second Brain: BrainDoc",
+    title: "Second Brain: Redux for Brain",
     type: "project",
     createdAt: "2026-02-09T09:45:00.000Z",
     shortDescription:
       "A personal knowledge vault for structured notes and quick recall.",
     longDescription:
       "Designed a second-brain application to capture, organize, and retrieve personal knowledge. Implemented tagging, linking, and search-first navigation so users can connect ideas quickly and keep long-term context.",
-    tags: ["Productivity", "Search", "Knowledge Base", "UX"],
+    tags: ["Productivity", "Redux", "Knowledge Base", "Mern"],
   },
-  {
-    id: "css-frameworks",
-    title: "Why I Stopped Using CSS Frameworks",
-    type: "blog",
-    createdAt: "2026-02-02T14:00:00.000Z",
-    shortDescription:
-      "Reflections on maintainability after returning to core CSS.",
-    longDescription:
-      "Shared lessons from moving away from utility-heavy workflows toward deliberate CSS architecture. Compared iteration speed, debugging cost, and long-term maintainability with practical examples from production UI work.",
-    tags: ["CSS", "Opinion", "Frontend"],
-    detail: {
-      dateLabel: "January 2025",
-      readTime: "5 min read",
-      lead: "I used Tailwind for two years. Before that, Bootstrap. They're genuinely good tools. But I stopped, and here's what happened.",
-      sections: [
-        {
-          heading: "The Moment I Noticed",
-          body: "I was debugging a layout bug and I had no idea what was happening. I knew the class names. I didn't know CSS. There's a difference, and I'd blurred it completely.",
-          quote:
-            "Knowing a framework is not the same as understanding the thing it abstracts. I had mistaken fluency in Tailwind for fluency in CSS.",
-        },
-        {
-          heading: "What Going Back Felt Like",
-          body: "Painful at first. Then freeing. I started understanding why things behaved the way they did. I stopped copy-pasting and started writing CSS I could explain.",
-        },
-        {
-          heading: "The Tradeoff",
-          body: "I'm slower on greenfield projects now. But I debug faster, write less CSS, and the code is more intentional. The point isn't 'vanilla CSS is better.' The point is: know what your tools are hiding from you.",
-        },
-      ],
-    },
-  },
+  // {
+  //   id: "css-frameworks",
+  //   title: "Why I Stopped Using CSS Frameworks",
+  //   type: "blog",
+  //   createdAt: "2026-02-02T14:00:00.000Z",
+  //   shortDescription:
+  //     "Reflections on maintainability after returning to core CSS.",
+  //   longDescription:
+  //     "Shared lessons from moving away from utility-heavy workflows toward deliberate CSS architecture. Compared iteration speed, debugging cost, and long-term maintainability with practical examples from production UI work.",
+  //   tags: ["CSS", "Opinion", "Frontend"],
+  //   detail: {
+  //     dateLabel: "January 2025",
+  //     readTime: "5 min read",
+  //     lead: "I used Tailwind for two years. Before that, Bootstrap. They're genuinely good tools. But I stopped, and here's what happened.",
+  //     sections: [
+  //       {
+  //         heading: "The Moment I Noticed",
+  //         body: "I was debugging a layout bug and I had no idea what was happening. I knew the class names. I didn't know CSS. There's a difference, and I'd blurred it completely.",
+  //         quote:
+  //           "Knowing a framework is not the same as understanding the thing it abstracts. I had mistaken fluency in Tailwind for fluency in CSS.",
+  //       },
+  //       {
+  //         heading: "What Going Back Felt Like",
+  //         body: "Painful at first. Then freeing. I started understanding why things behaved the way they did. I stopped copy-pasting and started writing CSS I could explain.",
+  //       },
+  //       {
+  //         heading: "The Tradeoff",
+  //         body: "I'm slower on greenfield projects now. But I debug faster, write less CSS, and the code is more intentional. The point isn't 'vanilla CSS is better.' The point is: know what your tools are hiding from you.",
+  //       },
+  //     ],
+  //   },
+  // },
 ];
 
 export const PLOG_TABS = [

@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 export default function FeatureWork() {
   const works = [
     {
-      heading: "A Online Study Environment: LarnIn",
+      heading: "Idea Graveyard",
       year: "2024",
-      description:
-        "A total studying environment online, you can make study partners, manage and share study resources, make notes and other study resources using AI.",
-      liveLink: "Still in Dev stage",
-      githubLink: "",
+      description: "Building,incomeing,gravyard stages for ideas.",
+      liveLink: "↗ live demo",
+      livelink: "",
+      githubLink: "↗ github",
+      githublink: "",
     },
     {
       heading: "Second Brain: BrainDoc",
@@ -16,7 +17,9 @@ export default function FeatureWork() {
       description:
         "Docker for Your brain, not Exactly like docker, but a storage where we can store and manage our all of our secondery data, that we need but can't sometime remember.",
       liveLink: "↗ live demo",
+      livelink: "",
       githubLink: "↗ github",
+      githublink: "",
     },
     {
       heading: "A bug Diary",
@@ -24,7 +27,9 @@ export default function FeatureWork() {
       description:
         "A log for your daily bugs, we all get lots of bugs, sometimes we fix them, but when the next time that bug appears we need to redo all the research for that because most of the time we can't remember the steps to fix it that's why this log will help remember the exact steps, and which bugs are not resolved which are the ones i am working on right now.",
       liveLink: "↗ live demo",
+      livelink: "",
       githubLink: "↗ github",
+      githublink: "https://github.com/bhaskar-f/Bug-diary",
     },
   ];
 
@@ -61,10 +66,10 @@ function Work({ number, Heading, description, year, liveLink, githubLink }) {
         </h1>
         <p className="tex-[.55rem] muted">{description}</p>
         <div className="mt-2 nav-text text-[.65rem] flex gap-4">
-          <Link className="hover-ink duration-200">{liveLink}</Link>
-          <Link className="hover-ink duration-200">
-            {githubLink}
+          <Link to="" className="hover-ink duration-200">
+            {liveLink}
           </Link>
+          <Link className="hover-ink duration-200">{githubLink}</Link>
         </div>
       </div>
     </div>
