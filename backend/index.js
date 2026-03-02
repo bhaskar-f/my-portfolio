@@ -16,9 +16,10 @@ app.use(express.json());
 const EMAIL_USER = process.env.EMAIL_USER?.trim();
 const EMAIL_PASS = process.env.EMAIL_PASS?.replace(/\s+/g, "");
 const isVercel = process.env.VERCEL === "1";
+const PORT = Number(process.env.PORT) || 5000;
 
 if (!EMAIL_USER || !EMAIL_PASS) {
-  console.error("Missing EMAIL_USER or EMAIL_PASS in backend/.env");
+  console.error("Missing EMAIL_USER or EMAIL_PASS environment variables");
   if (!isVercel) process.exit(1);
 }
 
@@ -65,7 +66,7 @@ if (!isVercel) {
   transporter
     .verify()
     .then(() => {
-      app.listen(5000, () => console.log("Backend running on port 5000"));
+      app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
     })
     .catch((error) => {
       console.error("SMTP verification failed:", error?.message || error);

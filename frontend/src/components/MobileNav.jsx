@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
-import { easeOut, motion } from "framer-motion";
+import { easeOut, motion as Motion } from "framer-motion";
 
 export default function MobileNav({ onClose }) {
   return (
-    <motion.div
+    <Motion.div
       initial={{ height: 0, opacity: 0, y: -10 }}
       animate={{ height: "auto", opacity: 1, y: 0 }}
       exit={{ height: 0, opacity: 0, y: -10 }}
@@ -43,6 +43,6 @@ export default function MobileNav({ onClose }) {
       >
         contact
       </NavLink>
-    </motion.div>
+    </Motion.div>
   );
 }

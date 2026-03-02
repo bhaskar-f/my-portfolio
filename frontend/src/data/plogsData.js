@@ -1,5 +1,47 @@
 export const PLOG_ITEMS = [
   {
+    id: "refocus_clone",
+    title: "Refocus Website Clone",
+    type: "project",
+    createdAt: "2025-11-11T16:40:00.000Z",
+    shortDescription:
+      "Animated Refocus website clone built with React, GSAP, and Framer Motion.",
+    longDescription:
+      "Developed a pixel-accurate clone of the Refocus website using React, focusing on smooth UI transitions and modern animation patterns. Implemented advanced scroll-triggered animations with GSAP and interactive motion effects using Framer Motion. Emphasized performance optimization, clean component structure, and responsive design to closely replicate the original user experience.",
+    tags: ["React", "GSAP", "Framer Motion", "Animations", "Frontend"],
+    detail: {
+      actions: [
+        {
+          label: "Live Demo",
+          href: "https://refokus-clone-project.netlify.app/",
+          variant: "filled",
+        },
+        {
+          label: "github",
+          href: "https://github.com/bhaskar-f/frontend-projects/tree/main/Refokus",
+          variant: "ghost",
+        },
+      ],
+      lead: "Scaling a frontend from 5 screens to 40 without breaking state, performance, or developer sanity. The goal: structure before chaos.",
+      sections: [
+        {
+          heading: "The Problem",
+          body: "As features expanded, state management became messy. Props were drilled across multiple layers, API calls were duplicated, and UI updates caused unnecessary re-renders. Debugging became slower with every new feature added.",
+        },
+        {
+          heading: "What I Built",
+          body: "Re-architected the React application using Context API for global state isolation and modular folder structure. Extracted reusable hooks for API logic, implemented lazy loading with route-based code splitting, and optimized rendering using memoization patterns.",
+          quote:
+            "Good React architecture isn't about writing more components — it's about knowing which components should never know about each other.",
+        },
+        {
+          heading: "The Result",
+          body: "Reduced unnecessary re-renders, improved performance across feature-heavy pages, and made onboarding easier for new developers. Feature delivery became faster because structure replaced guesswork.",
+        },
+      ],
+    },
+  },
+  {
     id: "design-system",
     title: "Design System from Scratch",
     type: "project",
@@ -29,7 +71,7 @@ export const PLOG_ITEMS = [
           body: "Each product had its own button, its own modal, its own form input - all slightly different. New features took twice as long because every team was rebuilding the same primitives.",
         },
         {
-          heading: "What I Built",
+          heading: "What I am trying to Build",
           body: "A fully typed React component library, documented in Storybook, with a companion Figma kit that stayed in sync. Every component ships with accessibility, dark mode tokens, and tests.",
           quote:
             "The real challenge wasn't the code. It was convincing three teams with three different opinions to agree on what a 'button' actually is.",
@@ -53,16 +95,88 @@ export const PLOG_ITEMS = [
     tags: ["Backend", "Redis", "API", "Performance"],
   },
   {
-    id: "realtime-collab",
-    title: "Real-Time Collaboration Tool",
+    id: "bug-diary",
+    title: "Bug Diary",
     type: "project",
-    createdAt: "2025-11-11T16:40:00.000Z",
+    createdAt: "2026-02-18T10:20:00.000Z",
     shortDescription:
-      "A collaborative editor with presence, sync, and conflict handling.",
+      "A bug log that records root causes, fixes, and unresolved issues so repeated bugs are solved faster.",
     longDescription:
-      "Developed a real-time collaboration app with WebSocket transport, live cursors, and deterministic conflict resolution. Focused on low-latency sync, optimistic updates, and robust reconnect behavior for unstable networks.",
-    tags: ["WebSockets", "Realtime", "State Sync", "Next.js"],
+      "Bug Diary is a debugging workspace for developers who keep seeing the same bugs return. Each issue is stored with reproduction steps, debugging notes, root cause, fix summary, and current status. Instead of restarting research every time a bug comes back, the project turns past debugging work into reusable knowledge.",
+    tags: ["Debugging", "MERN", "Productivity", "Issue Tracking"],
+    detail: {
+      actions: [
+        {
+          label: "live demo",
+          href: "https://bugdiary.vercel.app/",
+          variant: "filled",
+        },
+        {
+          label: "github",
+          href: "https://github.com/bhaskar-f/Bug-diary",
+          variant: "ghost",
+        },
+      ],
+      lead: "I built this after fixing the same category of bug more than once and realizing my notes were scattered everywhere.",
+      sections: [
+        {
+          heading: "The Problem",
+          body: "Debug history usually lives in temporary places: terminal output, chat screenshots, and random files. When the same bug reappears after weeks, the original reasoning is gone and the investigation starts from zero.",
+        },
+        {
+          heading: "What I Built",
+          body: "A focused bug-journaling flow with status stages, searchable entries, and structured fields for repro steps, root cause, and fix notes. The project keeps unresolved bugs visible while preserving solved bug context for future reference.",
+          quote:
+            "Fixing a bug once is good. Fixing it once and never re-researching it again is better.",
+        },
+        {
+          heading: "Current Outcome",
+          body: "Bug Diary now works as a personal debugging memory layer. Repeat-debug time drops because previous decisions, failed attempts, and final fixes are already documented in one place.",
+        },
+      ],
+    },
   },
+  {
+    id: "idea-graveyard",
+    title: "Idea Graveyard",
+    type: "project",
+    createdAt: "2026-02-02T09:30:00.000Z",
+    shortDescription:
+      "A project tracker for ideas across stages like incoming, active, on-hold, and graveyard.",
+    longDescription:
+      "Idea Graveyard helps manage side-project ideas before they disappear. It organizes concepts into lifecycle stages such as incoming, building, on hold, and graveyard. The goal is to keep momentum on promising ideas while still preserving paused concepts with enough context to restart later.",
+    tags: ["Idea Management", "Workflow", "Planning", "Frontend"],
+    detail: {
+      actions: [
+        {
+          label: "live demo",
+          href: "https://mindstock.vercel.app/",
+          variant: "filled",
+        },
+        {
+          label: "github",
+          href: "https://github.com/bhaskar-f/MindStock",
+          variant: "ghost",
+        },
+      ],
+      lead: "Most ideas do not fail because they are bad. They fail because they are forgotten between bursts of motivation.",
+      sections: [
+        {
+          heading: "The Problem",
+          body: "Idea lists are often just flat notes with no status or structure. Without stages, it is hard to decide what to build next, what to pause, and what to stop investing time in.",
+        },
+        {
+          heading: "What I Built",
+          body: "A lightweight board where each idea moves through explicit states: incoming, building, on hold, and graveyard. This adds decision clarity while preserving enough project context to revive old ideas without starting cold.",
+        },
+        {
+          heading: "The Result",
+          body: "The system improved prioritization and reduced idea churn. Active ideas stay visible, paused ideas remain recoverable, and abandoned ideas are archived intentionally instead of silently disappearing.",
+        },
+      ],
+    },
+  },
+
   // {
   //   id: "boring-architecture",
   //   title: "The Boring Architecture That Saved Us",
@@ -76,14 +190,33 @@ export const PLOG_ITEMS = [
   // },
   {
     id: "second-brain",
-    title: "Second Brain: Redux for Brain",
+    title: "Second Brain: BrainDoc",
     type: "project",
-    createdAt: "2026-02-09T09:45:00.000Z",
+    createdAt: "2026-03-09T09:45:00.000Z",
     shortDescription:
-      "A personal knowledge vault for structured notes and quick recall.",
+      "A personal knowledge vault for storing, linking, and retrieving notes with fast recall.",
     longDescription:
-      "Designed a second-brain application to capture, organize, and retrieve personal knowledge. Implemented tagging, linking, and search-first navigation so users can connect ideas quickly and keep long-term context.",
-    tags: ["Productivity", "Redux", "Knowledge Base", "Mern"],
+      "BrainDoc is a second-brain system for capturing and organizing personal knowledge. It combines structured notes, tags, backlinks, and search-first navigation so ideas stay connected over time. The project focuses on making context retrieval fast, especially for information that is useful but easy to forget.",
+    tags: ["Knowledge Base", "MERN", "Search", "Productivity"],
+    detail: {
+      lead: "I wanted a place where notes are not just stored, but connected well enough to be useful months later.",
+      sections: [
+        {
+          heading: "The Problem",
+          body: "Traditional note apps store information well but often fail at retrieval. Notes become isolated documents, and finding the right thought later takes more time than writing it did.",
+        },
+        {
+          heading: "What I am Building",
+          body: "BrainDoc combines collections, tags, and linked references with quick full-text search. The structure is designed to support both short capture sessions and deep context rebuilding when returning to a topic after long gaps.",
+          quote:
+            "A second brain should not be a digital drawer. It should feel like a map.",
+        },
+        {
+          heading: "Current State",
+          body: "Core information architecture is defined and the project is being expanded iteratively. The focus is on reliable note linking, clean search UX, and low friction capture so the system remains useful daily.",
+        },
+      ],
+    },
   },
   // {
   //   id: "css-frameworks",

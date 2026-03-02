@@ -1,9 +1,10 @@
 ﻿import { useState } from "react";
 import ContactLinks from "./ContactLinks";
 
-const API_BASE_URL = (
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"
-).replace(/\/+$/, "");
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "")
+  .trim()
+  .replace(/\/+$/, "");
+const CONTACT_ENDPOINT = API_BASE_URL ? `${API_BASE_URL}/api/contact` : "/api/contact";
 
 export default function ContactContent() {
   const [formData, setFormData] = useState({
@@ -29,7 +30,7 @@ export default function ContactContent() {
     setStatusMessage("Sending your message...");
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/contact`, {
+      const response = await fetch(CONTACT_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData), // Your state: {name, email, message}

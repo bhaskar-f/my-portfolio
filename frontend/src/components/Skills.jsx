@@ -2,7 +2,7 @@ export default function Skills() {
   const skills = [
     {
       field: "Frontend",
-      skills: " React, Tailwind, Figma, HTML, CSS, JavaScript",
+      skills: " React,Redux Toolkit, Tailwind, Figma, HTML, CSS, JavaScript",
     },
     {
       field: "Backend & Db",

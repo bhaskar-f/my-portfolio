@@ -1,7 +1,7 @@
 import { useState } from "react";
 import MobileNav from "./MobileNav";
 import Nav from "./Nav";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion as Motion } from "framer-motion";
 
 export default function Topbar() {
   const [isopen, setOpen] = useState(false);
@@ -11,7 +11,7 @@ export default function Topbar() {
       <div className="flex w-full justify-between items-center">
         <Nav />
         <span className="flex items-center gap-[5px] text-[0.68rem] duration-300 nav-text">
-          <motion.span
+          <Motion.span
             animate={{ opacity: [0.2, 1] }} // Animate between 0 and 1
             transition={{
               duration: 0.7, // Speed of one "pulse"
@@ -20,7 +20,7 @@ export default function Topbar() {
               ease: "easeInOut", // Smooth start/end for each pulse
             }}
             className="inline-block w-[5px] h-[5px] rounded-full bg-green-500 shadow-[0_0_10px_2px_rgba(34,197,94,0.75)]"
-          ></motion.span>
+          ></Motion.span>
           <h1>open to work</h1>
         </span>
         <button
@@ -28,7 +28,7 @@ export default function Topbar() {
           className="hamburger flex flex-col gap-1 bg-transparent"
           id="hb"
         >
-          <motion.span
+          <Motion.span
             animate={
               isopen
                 ? { rotate: 45, y: 5 } // State when open (Cross/X)
@@ -36,8 +36,8 @@ export default function Topbar() {
             }
             transition={{ duration: 0.3 }}
             className="inline-block w-[20px] h-[1px] ink-bg"
-          ></motion.span>
-          <motion.span
+          ></Motion.span>
+          <Motion.span
             animate={
               isopen
                 ? { opacity: 0 } // State when open (Cross/X)
@@ -45,8 +45,8 @@ export default function Topbar() {
             }
             transition={{ duration: 0.3 }}
             className="inline-block w-[20px] h-[1px] ink-bg"
-          ></motion.span>
-          <motion.span
+          ></Motion.span>
+          <Motion.span
             animate={
               isopen
                 ? { rotate: -45, y: -5 } // State when open (Cross/X)
@@ -54,7 +54,7 @@ export default function Topbar() {
             }
             transition={{ duration: 0.3 }}
             className="inline-block w-[20px] h-[1px] ink-bg"
-          ></motion.span>
+          ></Motion.span>
         </button>
       </div>
       <AnimatePresence initial={false}>

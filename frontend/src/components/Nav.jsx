@@ -28,11 +28,10 @@ export default function Nav() {
   const themeWrapRef = useRef(null);
 
   useEffect(() => {
-    const resolvedTheme = applyTheme(
-      localStorage.getItem(THEME_KEY) || "light",
-    );
-    setCurrentTheme(resolvedTheme);
+    applyTheme(currentTheme);
+  }, [currentTheme]);
 
+  useEffect(() => {
     function handleOutsideClick(e) {
       if (!themeWrapRef.current) return;
       if (!themeWrapRef.current.contains(e.target)) {

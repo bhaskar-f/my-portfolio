@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 
 import { PLOG_TYPE_BADGE, getPlogById } from "../data/plogsData";
 
@@ -227,7 +227,7 @@ export default function PlogDetail() {
         aria-label="Close details"
       />
 
-      <motion.aside
+      <Motion.aside
         initial={{ x: "100%" }}
         animate={{ x: 0 }}
         transition={{ duration: 0.35, ease: "easeInOut" }}
@@ -250,7 +250,7 @@ export default function PlogDetail() {
             </section>
           </div>
         </div>
-      </motion.aside>
+      </Motion.aside>
     </>
   );
 }
