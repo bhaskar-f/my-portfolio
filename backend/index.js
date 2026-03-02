@@ -59,6 +59,13 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+app.get("/", (req, res) => {
+  return res.status(200).json({
+    success: true,
+    message: "API running",
+  });
+});
+
 // 2. The API Route
 app.post("/api/contact", async (req, res) => {
   const { name, email, message } = req.body ?? {};
