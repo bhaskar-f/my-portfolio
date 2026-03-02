@@ -95,6 +95,36 @@ export const PLOG_ITEMS = [
     tags: ["Backend", "Redis", "API", "Performance"],
   },
   {
+    id: "portfolio-website",
+    title: "Portfolio Website",
+    type: "project",
+    createdAt: "2026-03-01T11:00:00.000Z",
+    shortDescription:
+      "A personal portfolio built to showcase projects, writing, and contact workflow with a clean editorial interface.",
+    longDescription:
+      "This portfolio website was designed and developed to present my projects, blogs, and background in one focused experience. It combines a minimal visual language with smooth transitions, reusable components, and a custom project detail flow. The site also includes a working contact pipeline connected to a backend email API for direct outreach.",
+    tags: ["React", "Vite", "Framer Motion", "Node.js", "Portfolio"],
+    detail: {
+      lead: "I wanted a portfolio that feels personal, reads clearly, and scales as I ship more work over time.",
+      sections: [
+        {
+          heading: "The Goal",
+          body: "Most portfolio sites either look good but feel generic, or they are functional but hard to read. The target here was to build something that is visually strong, fast, and structured enough to keep evolving with new projects.",
+        },
+        {
+          heading: "What I Built",
+          body: "A React + Vite frontend with reusable sections for featured work, plogs, and detailed project panels. I implemented theme-aware styling, responsive layout behavior, and a dedicated backend endpoint for the contact form with production-safe environment setup and CORS controls.",
+          quote:
+            "A portfolio is not just a gallery. It is a product that communicates how you think.",
+        },
+        {
+          heading: "Current State",
+          body: "The site is live, deployment-ready, and structured for continuous updates. New projects can be added through centralized data objects, and the UI already supports detailed storytelling for each build.",
+        },
+      ],
+    },
+  },
+  {
     id: "bug-diary",
     title: "Bug Diary",
     type: "project",
