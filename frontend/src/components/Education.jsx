@@ -35,10 +35,10 @@ export default function Educations() {
 
 function Education({ degree, field, year }) {
   return (
-    <div className="flex justify-between py-2 border-b-[1px] border-[#f0d1ce] w-full last:border-b-2">
+    <div className="flex flex-col sm:flex-row justify-between py-2 border-b-[1px] line w-full last:border-b-2">
       <div>
         <h1 className=" text-[1rem] font-normal ">{degree}</h1>
-        <h4 className="text-[.88rem] text-zinc-500">{field} </h4>
+        <h4 className="text-[.88rem] muted">{field} </h4>
       </div>
       <span className="nav-text text-[.65rem]">{year}</span>
     </div>

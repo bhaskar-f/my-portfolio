@@ -29,7 +29,7 @@ export default function Skills() {
 
 function Skill({ fields, skills }) {
   return (
-    <div className="flex items-center py-3 border-b-[1px] border-[#f0d1ce] w-full">
+    <div className="flex items-center py-3 border-b-[1px] line w-full">
       <h1 className="uppercase nav-text text-[.65rem] w-[22%]">{fields}</h1>
       <h2 className="text-[.9rem] w-[78%]">{skills}</h2>
     </div>

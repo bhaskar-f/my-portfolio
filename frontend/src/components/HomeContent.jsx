@@ -8,10 +8,10 @@ export default function HomeContent() {
   return (
     <div className="w-full h-full px-5 ">
       <div className="Info mt-2">
-        <h1 className="text-[4.43rem] -mb-2.5 font-normal">
+        <h1 className="text-[3rem] md:text-[4rem] lg:text-[4.43rem] -mb-2.5 font-normal main-text">
           <i>Bhaskar</i> <span>Sarkar</span>
           <motion.span
-            className="inline-block w-[3px] h-[4.4rem] -mb-1.5 ml-[1.7px] bg-[#111111]"
+            className="inline-block w-[2px] md:w-[3px] h-[3rem] md:h-[4.4rem] -mb-1.5 ml-[1.7px] bg-[var(--ink)]"
             animate={{ opacity: [1, 1, 0, 0] }} // Animate between 0 and 1
             transition={{
               duration: 1, // Speed of one "pulse"
@@ -35,20 +35,21 @@ export default function HomeContent() {
         <div className="mt-5 text-[0.7rem]">
           <h4 className="nav-text tracking-wide">
             Currently
-            <span className="text-[#222222] ml-5 tracking-widest">
+            <span className="ink ml-4.5 sm:ml-5 tracking-widest">
               Working Independently
             </span>
           </h4>
           <h4 className="nav-text tracking-wide">
             Based in
-            <span className="text-[#222222] ml-5 tracking-widest">
+            <span className="ink ml-4.5 sm:ml-5 tracking-widest">
               CoochBehar, WB, India
             </span>
           </h4>
           <h4 className="nav-text tracking-wide ">
             Working on
-            <span className="text-[#222222] ml-5 tracking-widest">
-              System Designing & Side Projects
+            <span className="ink ml-3 sm:ml-5 tracking-wide sm:tracking-widest ">
+              System Designing &{" "}
+              <span className="side-project">Side Projects</span>
             </span>
           </h4>
         </div>
@@ -57,31 +58,31 @@ export default function HomeContent() {
           <a
             href="your-resume.pdf"
             download
-            className="resume-link border-b-[.05rem] border-[#f0d1ce] hover:text-[#111111] hover:border-[#111111] duration-200"
+            className="resume-link border-b-[.05rem] line hover-ink hover:border-[color:var(--ink)] duration-200"
           >
             ↓ download résumé
           </a>
         </div>
       </div>
-      <hr className="text-[#f0d1ce] my-10" />
+      <hr className="line my-10" />
       <div className="featued-works">
         <h1 className="uppercase text-[0.7rem] nav-text">Featured work</h1>
-        <hr className="text-[#f0d1ce] mt-5" />
+        <hr className="line mt-5" />
         <FeatureWork />
       </div>
-      <hr className="text-[#f0d1ce] my-10" />
+      <hr className="line my-10" />
       <div className="skils">
         <h1 className="uppercase text-[0.7rem] nav-text">skills</h1>
-        <hr className="text-[#f0d1ce] mt-5" />
+        <hr className="line mt-5" />
 
         <Skills />
       </div>
-      <hr className="text-[#f0d1ce] my-10" />
+      <hr className="line my-10" />
       <div className="education">
         <h1 className="uppercase text-[0.7rem] nav-text">
           Education & cirtifications
         </h1>
-        <hr className="text-[#f0d1ce] mt-5" />
+        <hr className="line mt-5" />
         <Educations />
       </div>
     </div>

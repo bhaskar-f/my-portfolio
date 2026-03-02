@@ -1,23 +1,85 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 
+const THEME_KEY = "portfolio-theme";
+const SUPPORTED_THEMES = new Set(["light", "dark", "sepia", "slate", "moss"]);
+
+function resolveTheme(theme) {
+  return SUPPORTED_THEMES.has(theme) ? theme : "light";
+}
+
+function applyTheme(theme) {
+  const resolvedTheme = resolveTheme(theme);
+  const root = document.documentElement;
+  if (resolvedTheme === "light") {
+    root.removeAttribute("data-theme");
+  } else {
+    root.setAttribute("data-theme", resolvedTheme);
+  }
+  localStorage.setItem(THEME_KEY, resolvedTheme);
+  return resolvedTheme;
+}
+
 export default function Nav() {
+  const [currentTheme, setCurrentTheme] = useState(() =>
+    resolveTheme(localStorage.getItem(THEME_KEY) || "light"),
+  );
+  const [isOpen, setOpen] = useState(false);
+  const themeWrapRef = useRef(null);
+
+  useEffect(() => {
+    const resolvedTheme = applyTheme(
+      localStorage.getItem(THEME_KEY) || "light",
+    );
+    setCurrentTheme(resolvedTheme);
+
+    function handleOutsideClick(e) {
+      if (!themeWrapRef.current) return;
+      if (!themeWrapRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    }
+
+    function handleEscape(e) {
+      if (e.key === "Escape") setOpen(false);
+    }
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("touchstart", handleOutsideClick);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
+
+  function handleThemeSelect(theme) {
+    const resolvedTheme = applyTheme(theme);
+    setCurrentTheme(resolvedTheme);
+    setOpen(false);
+  }
+
+  function getThemeOptionClass(theme) {
+    return `theme-opt cursor-pointer p-[0.5rem] px-[0.8rem] flex gap-2 items-center text-[0.7rem] ${
+      currentTheme === theme ? "is-active" : ""
+    }`;
+  }
+
   return (
-    <div className="w-full h-full px-5 flex items-center justify-between nav-text ">
+    <div className="w-[80%] h-full flex items-center justify-between nav-text nav">
       <nav className="flex items-center justify-between gap-5">
-        <ul className="flex items-center gap-3 text-[0.79rem] ">
+        <ul className="flex items-center gap-3 text-[0.79rem] navigation-link">
           <li>
-            <NavLink
-              to="/"
-              className="hover:text-[#111111] duration-200 cursor-pointer "
-            >
+            <NavLink to="/" className="hover-ink duration-200 cursor-pointer">
               home
             </NavLink>
           </li>
           <li>
             <NavLink
               to="/plogs"
-              className="hover:text-[#111111] duration-200 cursor-pointer"
+              className="hover-ink duration-200 cursor-pointer"
             >
               plogs
             </NavLink>
@@ -25,7 +87,7 @@ export default function Nav() {
           <li>
             <NavLink
               to="/about"
-              className="hover:text-[#111111] duration-200 cursor-pointer "
+              className="hover-ink duration-200 cursor-pointer"
             >
               about
             </NavLink>
@@ -33,76 +95,75 @@ export default function Nav() {
           <li>
             <NavLink
               to="/contact"
-              className="hover:text-[#111111] duration-200 cursor-pointer"
+              className="hover-ink duration-200 cursor-pointer"
             >
               contact
             </NavLink>
           </li>
         </ul>
 
-        <span className="theme-wrap relative inline-block" id="themeWrap">
+        <span
+          ref={themeWrapRef}
+          className="theme-wrap relative inline-block"
+          id="themeWrap"
+        >
           <button
-            className="themeTrigger inline-flex items-center gap-1  cursor-pointer text-[0.79rem] hover:text-[#111111] duration-200 cursor-pointer border-b-1 border-[#8888] hover:border-[#111111]"
+            onClick={() => setOpen(!isOpen)}
+            className="themeTrigger inline-flex items-center gap-1 text-[0.79rem] cursor-pointer hover-ink  duration-200 border-b-1 line hover-line-ink"
             id="themeTrigger"
           >
             ▧ theme
             <span className="caret inline-block transition-[transform]">▾</span>
           </button>
-          <div
-            className="theme-dropdown hidden border-1 border-[#dddddd] py-[0.2rem] min-w-[130px] left-0 absolute top-8 flex flex-col"
-            id="themeDropdown"
-          >
-            <button
-              className="theme-opt hover:text-[#111111] hover:bg-[#dddddd] p-[0.5rem] flex gap-2 items-center text-[0.7rem]"
-              data-theme="light"
+          {isOpen && (
+            <div
+              className="theme-dropdown surface border-1 line py-[0.2rem] min-w-[140px] left-0 absolute top-8 flex flex-col shadow-lg"
+              id="themeDropdown"
             >
-              <span className="theme-swatch w-[10px] h-[10px] rounded-full bg-[#fafaf8] border-[#ddd]"></span>
-              light
-            </button>
-            <button
-              class="theme-opt hover:text-[#111111] hover:bg-[#dddddd] p-[0.5rem] flex gap-2 items-center text-[0.7rem]"
-              data-theme="dark"
-            >
-              <span className="theme-swatch w-[10px] h-[10px] rounded-full bg-[ #141414] border-[#2a2a2a]"></span>
-              dark
-            </button>
-            <button
-              class="theme-opt hover:text-[#111111] hover:bg-[#dddddd] p-[0.5rem] flex gap-2 items-center text-[0.7rem]"
-              data-theme="sepia"
-            >
-              <span className="theme-swatch w-[10px] h-[10px] rounded-full bg-[ #f5efe6] border-[#ddd0be]"></span>
-              sepia
-            </button>
-            <button
-              class="theme-opt hover:text-[#111111] hover:bg-[#dddddd] p-[0.5rem] flex gap-2 items-center text-[0.7rem]"
-              data-theme="slate"
-            >
-              <span className="theme-swatch w-[10px] h-[10px] rounded-full bg-[#0f1520] border-[#1e2d3d]"></span>
-              slate
-            </button>
-            <button
-              class="theme-opt hover:text-[#111111] hover:bg-[#dddddd] p-[0.5rem] flex gap-2 items-center text-[0.7rem]"
-              data-theme="moss"
-            >
-              <span className="theme-swatch w-[10px] h-[10px] rounded-full bg-[ #f2f4f0] border-[#d4dcd0]"></span>
-              moss
-            </button>
-          </div>
+              <button
+                onClick={() => handleThemeSelect("light")}
+                className={getThemeOptionClass("light")}
+                data-theme="light"
+              >
+                <span className="theme-swatch w-[10px] h-[10px] rounded-full bg-[#ecebe5] border-[#cbc8c0]"></span>
+                light
+              </button>
+              <button
+                onClick={() => handleThemeSelect("dark")}
+                className={getThemeOptionClass("dark")}
+                data-theme="dark"
+              >
+                <span className="theme-swatch w-[10px] h-[10px] bg-[#141414] rounded-full border-[#2a2a2a]"></span>
+                dark
+              </button>
+              <button
+                onClick={() => handleThemeSelect("sepia")}
+                className={getThemeOptionClass("sepia")}
+                data-theme="sepia"
+              >
+                <span className="theme-swatch w-[10px] h-[10px] rounded-full bg-[#f5efe6] border-[#ddd0be]"></span>
+                sepia
+              </button>
+              <button
+                onClick={() => handleThemeSelect("slate")}
+                className={getThemeOptionClass("slate")}
+                data-theme="slate"
+              >
+                <span className="theme-swatch w-[10px] h-[10px] rounded-full bg-[#0f1520] border-[#1e2d3d]"></span>
+                slate
+              </button>
+              <button
+                onClick={() => handleThemeSelect("moss")}
+                className={getThemeOptionClass("moss")}
+                data-theme="moss"
+              >
+                <span className="theme-swatch w-[10px] h-[10px] rounded-full bg-[#f2f4f0] border-[#d4dcd0]"></span>
+                moss
+              </button>
+            </div>
+          )}
         </span>
       </nav>
-      <span className="flex items-center gap-[5px] text-[0.68rem] duration-300">
-        <motion.span
-          animate={{ opacity: [0.2, 1] }} // Animate between 0 and 1
-          transition={{
-            duration: 0.9, // Speed of one "pulse"
-            repeat: Infinity, // Loop forever
-            repeatType: "mirror", // Smoothly reverse back to start
-            ease: "easeInOut", // Smooth start/end for each pulse
-          }}
-          className="inline-block w-1 h-1 rounded-full bg-green-500"
-        ></motion.span>
-        <h1>open to work</h1>
-      </span>
     </div>
   );
 }

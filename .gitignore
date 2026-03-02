@@ -1,0 +1,37 @@
+# Dependencies
+**/node_modules/
+
+# Build output
+frontend/dist/
+frontend/dist-ssr/
+frontend/.vite/
+backend/dist/
+coverage/
+preview.html
+requirements.md
+
+# Environment files (secrets)
+backend/.env
+backend/.env.*
+!backend/.env.example
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/*
+!.vscode/extensions.json

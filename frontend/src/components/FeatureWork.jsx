@@ -50,8 +50,8 @@ export default function FeatureWork() {
 
 function Work({ number, Heading, description, year, liveLink, githubLink }) {
   return (
-    <div className="flex gap-3 w-full border-b-[1px] border-[#f0d1ce] py-5">
-      <span className="text-[.65rem] text-zinc-300 font-[Jetbrains_mono] mt-2">
+    <div className="flex gap-3 w-full border-b-[1px] line py-5">
+      <span className="text-[.65rem] faint-text font-[Jetbrains_mono] mt-2">
         {number}
       </span>
       <div>
@@ -59,10 +59,10 @@ function Work({ number, Heading, description, year, liveLink, githubLink }) {
           {Heading}
           <span className="nav-text text-[.65rem]">{year}</span>
         </h1>
-        <p className="tex-[.55rem] text-zinc-500">{description}</p>
+        <p className="tex-[.55rem] muted">{description}</p>
         <div className="mt-2 nav-text text-[.65rem] flex gap-4">
-          <Link className="hover:text-[#111111] duration-200">{liveLink}</Link>
-          <Link className="hover:text-[#111111] duration-200">
+          <Link className="hover-ink duration-200">{liveLink}</Link>
+          <Link className="hover-ink duration-200">
             {githubLink}
           </Link>
         </div>
