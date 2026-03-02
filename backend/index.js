@@ -10,11 +10,11 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.join(__dirname, ".env") });
 
 const app = express();
-app.use(cors());
-app.use(express.json());
 
 const EMAIL_USER = process.env.EMAIL_USER?.trim();
 const EMAIL_PASS = process.env.EMAIL_PASS?.replace(/\s+/g, "");
+const FRONTEND_URL = process.env.FRONTEND_URL?.trim().replace(/\/+$/, "");
+const NODE_ENV = process.env.NODE_ENV || "development";
 const isVercel = process.env.VERCEL === "1";
 const PORT = Number(process.env.PORT) || 5000;
 
@@ -22,6 +22,31 @@ if (!EMAIL_USER || !EMAIL_PASS) {
   console.error("Missing EMAIL_USER or EMAIL_PASS environment variables");
   if (!isVercel) process.exit(1);
 }
+
+if (NODE_ENV === "production" && !FRONTEND_URL) {
+  console.error("Missing FRONTEND_URL environment variable in production");
+  if (!isVercel) process.exit(1);
+}
+
+const allowedOrigins = new Set(
+  [
+    FRONTEND_URL,
+    NODE_ENV === "production" ? null : "http://localhost:5173",
+    NODE_ENV === "production" ? null : "http://127.0.0.1:5173",
+  ].filter(Boolean),
+);
+
+app.use(
+  cors({
+    origin(origin, callback) {
+      // Allow non-browser requests (server-to-server, health checks, curl).
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.has(origin)) return callback(null, true);
+      return callback(new Error("Not allowed by CORS"));
+    },
+  }),
+);
+app.use(express.json());
 
 // 1. Create the transporter using Gmail SMTP
 const transporter = nodemailer.createTransport({
