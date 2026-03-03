@@ -109,7 +109,7 @@ export default function Nav() {
           <button
             onClick={() => setOpen((prev) => !prev)}
             aria-expanded={isOpen}
-            className={`themeTrigger inline-flex items-center gap-1 text-[0.79rem] cursor-pointer hover-ink ${isOpen && "active"}  duration-200 border-b-1 line hover-line-ink`}
+            className={`themeTrigger inline-flex items-center gap-1 text-[0.79rem] cursor-pointer hover-ink ${isOpen ? "active" : ""} duration-200 border-b-1 line hover-line-ink`}
             id="themeTrigger"
           >
             ▧ theme

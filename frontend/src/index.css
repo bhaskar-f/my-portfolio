@@ -245,6 +245,11 @@ body {
     width: auto;
   }
 
+  .mobile-nav-link-active {
+    border-color: var(--ink) !important;
+    color: var(--ink) !important;
+  }
+
   .mobile-nav {
     display: flex;
     flex-direction: column;
@@ -259,9 +264,6 @@ body {
   }
   .navigation-link {
     display: none;
-  }
-  .active {
-    border-bottom: 1px solid var(--faint) !important;
   }
 }
 @media (width >= 540px) {

@@ -7,6 +7,10 @@ export default function MobileNav({ onSelect }) {
     onSelect(targetPath);
   }
 
+  function getMobileLinkClass({ isActive }) {
+    return `border-b-[1px] ${isActive ? "mobile-nav-link-active" : "line"}`;
+  }
+
   return (
     <Motion.div
       initial={{ opacity: 0, y: -12, scaleY: 0.98 }}
@@ -14,13 +18,14 @@ export default function MobileNav({ onSelect }) {
       exit={{ opacity: 0, y: -12, scaleY: 0.98 }}
       transition={{ duration: 0.3, ease: easeOut }}
       style={{ transformOrigin: "top" }}
-      className="mobile-nav nav-text text-[0.7rem]"
+      className="mobile-nav nav-text text-[0.721rem] gap-4"
       id="mobileNav"
     >
       <NavLink
+        end
         to="/"
         data-page="home"
-        className="border-b-[1px] line"
+        className={getMobileLinkClass}
         onClick={(event) => handleNavClick(event, "/")}
       >
         home
@@ -28,7 +33,7 @@ export default function MobileNav({ onSelect }) {
       <NavLink
         to="/plogs"
         data-page="plogs"
-        className="border-b-[1px] line"
+        className={getMobileLinkClass}
         onClick={(event) => handleNavClick(event, "/plogs")}
       >
         plogs
@@ -36,7 +41,7 @@ export default function MobileNav({ onSelect }) {
       <NavLink
         to="/about"
         data-page="about"
-        className="border-b-[1px] line"
+        className={getMobileLinkClass}
         onClick={(event) => handleNavClick(event, "/about")}
       >
         about
@@ -44,7 +49,7 @@ export default function MobileNav({ onSelect }) {
       <NavLink
         to="/contact"
         data-page="contact"
-        className="border-b-[1px] line"
+        className={getMobileLinkClass}
         onClick={(event) => handleNavClick(event, "/contact")}
       >
         contact
