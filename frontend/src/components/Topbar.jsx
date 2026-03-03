@@ -7,8 +7,8 @@ export default function Topbar() {
   const [isopen, setOpen] = useState(false);
 
   return (
-    <div className="min-h-20 surface flex items-center w-full sticky top-0 z-50 px-5">
-      <div className="flex w-full justify-between items-center">
+    <div className="min-h-20 surface w-full sticky top-0 z-50 px-5">
+      <div className="flex min-h-20 w-full justify-between items-center">
         <Nav />
         <span className="flex items-center gap-[5px] text-[0.68rem] duration-300 nav-text">
           <Motion.span
