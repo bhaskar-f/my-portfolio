@@ -74,7 +74,7 @@ export default function HomeContent() {
           </h4>
           <h4 className="nav-text tracking-wide ">
             Working on
-            <span className="ink ml-2.5 sm:ml-5 tracking-normal sm:tracking-widest ">
+            <span className="ink ml-3 sm:ml-5 tracking-normal sm:tracking-widest ">
               System Designing & Side Projects
             </span>
           </h4>
