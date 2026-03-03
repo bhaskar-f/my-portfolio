@@ -4,11 +4,12 @@ import { easeOut, motion as Motion } from "framer-motion";
 export default function MobileNav({ onClose }) {
   return (
     <Motion.div
-      initial={{ height: 0, opacity: 0, y: -10 }}
-      animate={{ height: "auto", opacity: 1, y: 0 }}
-      exit={{ height: 0, opacity: 0, y: -10 }}
+      initial={{ opacity: 0, y: -12, scaleY: 0.98 }}
+      animate={{ opacity: 1, y: 0, scaleY: 1 }}
+      exit={{ opacity: 0, y: -12, scaleY: 0.98 }}
       transition={{ duration: 0.3, ease: easeOut }}
-      className="mobile-nav nav-text text-[0.7rem] mt-3 mb-6"
+      style={{ transformOrigin: "top" }}
+      className="mobile-nav nav-text text-[0.7rem]"
       id="mobileNav"
     >
       <NavLink
