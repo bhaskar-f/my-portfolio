@@ -62,21 +62,20 @@ export default function HomeContent() {
         <div className="mt-5 text-[0.7rem]">
           <h4 className="nav-text tracking-wide">
             Currently
-            <span className="ink ml-4.5 sm:ml-5 tracking-widest">
+            <span className="ink ml-4.5 sm:ml-5 tracking-wide sm:tracking-widest">
               Working Independently
             </span>
           </h4>
           <h4 className="nav-text tracking-wide">
             Based in
-            <span className="ink ml-4.5 sm:ml-5 tracking-widest">
+            <span className="ink ml-4.5 sm:ml-5 tracking-wide sm:tracking-widest">
               CoochBehar, WB, India
             </span>
           </h4>
           <h4 className="nav-text tracking-wide ">
             Working on
-            <span className="ink ml-3 sm:ml-5 tracking-wide sm:tracking-widest ">
-              System Designing &{" "}
-              <span className="side-project">Side Projects</span>
+            <span className="ink ml-2.5 sm:ml-5 tracking-normal sm:tracking-widest ">
+              System Designing & Side Projects
             </span>
           </h4>
         </div>
