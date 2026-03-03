@@ -4,7 +4,7 @@ import Skills from "./Skills";
 import Educations from "./Education";
 
 const RESUME_SOURCE_URL = "/resume.pdf";
-const RESUME_DOWNLOAD_NAME = "Bhaskar_Resume.pdf";
+const RESUME_DOWNLOAD_NAME = "Bhaskar's_Resume.pdf";
 
 export default function HomeContent() {
   const handleResumeDownload = async (event) => {
