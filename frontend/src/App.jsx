@@ -1,4 +1,6 @@
-import { Route, Routes, useMatch } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { Route, Routes, useLocation, useMatch } from "react-router-dom";
+import LocomotiveScroll from "locomotive-scroll";
 import Home from "./components/Home";
 import Plogs from "./components/Plogs";
 import PlogDetail from "./components/PlogDetail";
@@ -7,6 +9,42 @@ import Contact from "./components/Contact";
 
 export default function App() {
   const isPlogDetailRoute = Boolean(useMatch("/plogs/:plogId"));
+  const location = useLocation();
+  const locomotiveRef = useRef(null);
+
+  useEffect(() => {
+    locomotiveRef.current = new LocomotiveScroll({
+      lenisOptions: {
+        allowNestedScroll: true,
+        lerp: 0.15,
+      },
+    });
+
+    return () => {
+      locomotiveRef.current?.destroy();
+      locomotiveRef.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      locomotiveRef.current?.resize();
+    };
+
+    window.addEventListener("resize", handleResize);
+    window.visualViewport?.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.visualViewport?.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      locomotiveRef.current?.resize();
+    });
+  }, [location.pathname]);
 
   return (
     <div

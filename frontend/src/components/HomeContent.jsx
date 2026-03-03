@@ -1,10 +1,37 @@
 import { motion as Motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import FeatureWork from "./FeatureWork";
 import Skills from "./Skills";
 import Educations from "./Education";
 
+const RESUME_SOURCE_URL = "/resume.pdf";
+const RESUME_DOWNLOAD_NAME = "Bhaskar_Resume.pdf";
+
 export default function HomeContent() {
+  const handleResumeDownload = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch(RESUME_SOURCE_URL);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch resume: ${response.status}`);
+      }
+
+      const resumeBlob = await response.blob();
+      const blobUrl = URL.createObjectURL(resumeBlob);
+      const downloadLink = document.createElement("a");
+
+      downloadLink.href = blobUrl;
+      downloadLink.download = RESUME_DOWNLOAD_NAME;
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      downloadLink.remove();
+      URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+      console.error("Resume download failed:", error);
+      window.location.href = RESUME_SOURCE_URL;
+    }
+  };
+
   return (
     <div className="w-full h-full px-5 ">
       <div className="Info mt-2">
@@ -25,7 +52,7 @@ export default function HomeContent() {
           Full-Stack Developer & Designer
         </span>
         <br />
-        <span className="inline-block text-[1.1rem] leading-[2.02rem] w-[90%]">
+        <span className="inline-block text-[1.1rem] leading-[1.75rem] w-[90%]">
           I build things that
           <span className="font-medium"> work beautifully </span> and look like
           they were meant to exist. Three years of shipping products, writing
@@ -56,8 +83,9 @@ export default function HomeContent() {
 
         <div className="flex items-baseline gap-0 flex-wrap nav-text text-[.69rem] mt-10">
           <a
-            href="./resume.pdf"
-            download="Bhaskar_Resume.pdf"
+            href={RESUME_SOURCE_URL}
+            download={RESUME_DOWNLOAD_NAME}
+            onClick={handleResumeDownload}
             className="resume-link border-b-[.05rem] line hover-ink hover:border-[color:var(--ink)] duration-200"
           >
             ↓ download résumé
