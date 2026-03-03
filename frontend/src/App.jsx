@@ -42,6 +42,16 @@ export default function App() {
 
   useEffect(() => {
     requestAnimationFrame(() => {
+      if (typeof locomotiveRef.current?.scrollTo === "function") {
+        locomotiveRef.current.scrollTo(0, {
+          duration: 0,
+          disableLerp: true,
+          immediate: true,
+        });
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      }
+
       locomotiveRef.current?.resize();
     });
   }, [location.pathname]);

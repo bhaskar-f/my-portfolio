@@ -2,9 +2,23 @@ import { useState } from "react";
 import MobileNav from "./MobileNav";
 import Nav from "./Nav";
 import { AnimatePresence, motion as Motion } from "framer-motion";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Topbar() {
   const [isopen, setOpen] = useState(false);
+  const [pendingPath, setPendingPath] = useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  function handleMobileSelect(targetPath) {
+    if (location.pathname === targetPath) {
+      setOpen(false);
+      return;
+    }
+
+    setPendingPath(targetPath);
+    setOpen(false);
+  }
 
   return (
     <div className="min-h-20 surface w-full sticky top-0 z-50 px-5 relative">
@@ -25,6 +39,7 @@ export default function Topbar() {
         </span>
         <button
           onClick={() => setOpen(!isopen)}
+          disabled={pendingPath !== null}
           className="hamburger flex flex-col gap-1 bg-transparent"
           id="hb"
         >
@@ -57,8 +72,15 @@ export default function Topbar() {
           ></Motion.span>
         </button>
       </div>
-      <AnimatePresence initial={false}>
-        {isopen && <MobileNav onClose={() => setOpen(false)} />}
+      <AnimatePresence
+        initial={false}
+        onExitComplete={() => {
+          if (!pendingPath) return;
+          navigate(pendingPath);
+          setPendingPath(null);
+        }}
+      >
+        {isopen && <MobileNav onSelect={handleMobileSelect} />}
       </AnimatePresence>
     </div>
   );

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import { AnimatePresence, easeInOut, motion as Motion } from "framer-motion";
 const THEME_KEY = "portfolio-theme";
 const SUPPORTED_THEMES = new Set(["light", "dark", "sepia", "slate", "moss"]);
 
@@ -107,60 +107,75 @@ export default function Nav() {
           id="themeWrap"
         >
           <button
-            onClick={() => setOpen(!isOpen)}
-            className="themeTrigger inline-flex items-center gap-1 text-[0.79rem] cursor-pointer hover-ink  duration-200 border-b-1 line hover-line-ink"
+            onClick={() => setOpen((prev) => !prev)}
+            aria-expanded={isOpen}
+            className={`themeTrigger inline-flex items-center gap-1 text-[0.79rem] cursor-pointer hover-ink ${isOpen && "active"}  duration-200 border-b-1 line hover-line-ink`}
             id="themeTrigger"
           >
             ▧ theme
-            <span className="caret inline-block transition-[transform]">▾</span>
-          </button>
-          {isOpen && (
-            <div
-              className="theme-dropdown surface border-1 line py-[0.2rem] min-w-[140px] left-0 absolute top-8 flex flex-col shadow-lg"
-              id="themeDropdown"
+            <span
+              className={`caret inline-flex items-center justify-center transform-gpu transition-transform duration-300 ease-in-out ${
+                isOpen ? "rotate-180" : "rotate-0"
+              }`}
+              aria-hidden="true"
             >
-              <button
-                onClick={() => handleThemeSelect("light")}
-                className={getThemeOptionClass("light")}
-                data-theme="light"
+              ▾
+            </span>
+          </button>
+          <AnimatePresence initial={false}>
+            {isOpen && (
+              <Motion.div
+                initial={{ opacity: 0, y: -8, scaleY: 0.96 }}
+                animate={{ opacity: 1, y: 0, scaleY: 1 }}
+                exit={{ opacity: 0, y: -8, scaleY: 0.96 }}
+                transition={{ duration: 0.22, ease: easeInOut }}
+                style={{ transformOrigin: "top" }}
+                className="theme-dropdown surface border-1 line py-[0.2rem] min-w-[140px] left-0 absolute top-8 flex flex-col shadow-lg"
+                id="themeDropdown"
               >
-                <span className="theme-swatch w-[10px] h-[10px] rounded-full bg-[#ecebe5] border-[#cbc8c0]"></span>
-                light
-              </button>
-              <button
-                onClick={() => handleThemeSelect("dark")}
-                className={getThemeOptionClass("dark")}
-                data-theme="dark"
-              >
-                <span className="theme-swatch w-[10px] h-[10px] bg-[#141414] rounded-full border-[#2a2a2a]"></span>
-                dark
-              </button>
-              <button
-                onClick={() => handleThemeSelect("sepia")}
-                className={getThemeOptionClass("sepia")}
-                data-theme="sepia"
-              >
-                <span className="theme-swatch w-[10px] h-[10px] rounded-full bg-[#f5efe6] border-[#ddd0be]"></span>
-                sepia
-              </button>
-              <button
-                onClick={() => handleThemeSelect("slate")}
-                className={getThemeOptionClass("slate")}
-                data-theme="slate"
-              >
-                <span className="theme-swatch w-[10px] h-[10px] rounded-full bg-[#0f1520] border-[#1e2d3d]"></span>
-                slate
-              </button>
-              <button
-                onClick={() => handleThemeSelect("moss")}
-                className={getThemeOptionClass("moss")}
-                data-theme="moss"
-              >
-                <span className="theme-swatch w-[10px] h-[10px] rounded-full bg-[#f2f4f0] border-[#d4dcd0]"></span>
-                moss
-              </button>
-            </div>
-          )}
+                <button
+                  onClick={() => handleThemeSelect("light")}
+                  className={getThemeOptionClass("light")}
+                  data-theme="light"
+                >
+                  <span className="theme-swatch w-[10px] h-[10px] rounded-full bg-[#ecebe5] border-[#cbc8c0]"></span>
+                  light
+                </button>
+                <button
+                  onClick={() => handleThemeSelect("dark")}
+                  className={getThemeOptionClass("dark")}
+                  data-theme="dark"
+                >
+                  <span className="theme-swatch w-[10px] h-[10px] bg-[#141414] rounded-full border-[#2a2a2a]"></span>
+                  dark
+                </button>
+                <button
+                  onClick={() => handleThemeSelect("sepia")}
+                  className={getThemeOptionClass("sepia")}
+                  data-theme="sepia"
+                >
+                  <span className="theme-swatch w-[10px] h-[10px] rounded-full bg-[#f5efe6] border-[#ddd0be]"></span>
+                  sepia
+                </button>
+                <button
+                  onClick={() => handleThemeSelect("slate")}
+                  className={getThemeOptionClass("slate")}
+                  data-theme="slate"
+                >
+                  <span className="theme-swatch w-[10px] h-[10px] rounded-full bg-[#0f1520] border-[#1e2d3d]"></span>
+                  slate
+                </button>
+                <button
+                  onClick={() => handleThemeSelect("moss")}
+                  className={getThemeOptionClass("moss")}
+                  data-theme="moss"
+                >
+                  <span className="theme-swatch w-[10px] h-[10px] rounded-full bg-[#f2f4f0] border-[#d4dcd0]"></span>
+                  moss
+                </button>
+              </Motion.div>
+            )}
+          </AnimatePresence>
         </span>
       </nav>
     </div>

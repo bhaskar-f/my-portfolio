@@ -244,6 +244,7 @@ body {
   .nav {
     width: auto;
   }
+
   .mobile-nav {
     display: flex;
     flex-direction: column;

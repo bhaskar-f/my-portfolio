@@ -1,7 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { easeOut, motion as Motion } from "framer-motion";
 
-export default function MobileNav({ onClose }) {
+export default function MobileNav({ onSelect }) {
+  function handleNavClick(event, targetPath) {
+    event.preventDefault();
+    onSelect(targetPath);
+  }
+
   return (
     <Motion.div
       initial={{ opacity: 0, y: -12, scaleY: 0.98 }}
@@ -16,7 +21,7 @@ export default function MobileNav({ onClose }) {
         to="/"
         data-page="home"
         className="border-b-[1px] line"
-        onClick={onClose}
+        onClick={(event) => handleNavClick(event, "/")}
       >
         home
       </NavLink>
@@ -24,7 +29,7 @@ export default function MobileNav({ onClose }) {
         to="/plogs"
         data-page="plogs"
         className="border-b-[1px] line"
-        onClick={onClose}
+        onClick={(event) => handleNavClick(event, "/plogs")}
       >
         plogs
       </NavLink>
@@ -32,7 +37,7 @@ export default function MobileNav({ onClose }) {
         to="/about"
         data-page="about"
         className="border-b-[1px] line"
-        onClick={onClose}
+        onClick={(event) => handleNavClick(event, "/about")}
       >
         about
       </NavLink>
@@ -40,7 +45,7 @@ export default function MobileNav({ onClose }) {
         to="/contact"
         data-page="contact"
         className="border-b-[1px] line"
-        onClick={onClose}
+        onClick={(event) => handleNavClick(event, "/contact")}
       >
         contact
       </NavLink>
