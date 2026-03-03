@@ -23,14 +23,14 @@ export default function FeatureWork() {
       githublnk: "https://github.com/bhaskar-f/MindStock",
     },
     {
-      heading: "Second Brain: BrainDoc",
+      heading: "My Portfolio Website",
       year: "2026",
       description:
-        "Docker for Your brain, not Exactly like docker, but a storage where we can store and manage our all of our secondery data, that we need but can't sometime remember.",
-      liveLink: "in progress",
-      livelnk: "",
-      githubLink: "",
-      githublnk: "",
+        "A personal portfolio built to showcase projects, writing, and contact workflow with a clean editorial interface.",
+      liveLink: "↗ live demo",
+      livelnk: "https://bhaskarsarkar.vercel.app/",
+      githubLink: "↗ github",
+      githublnk: "https://github.com/bhaskar-f/my-portfolio",
     },
   ];
 
@@ -38,6 +38,7 @@ export default function FeatureWork() {
     <div>
       {works.map((work, index) => {
         let number = index + 1;
+        const isLast = index === works.length - 1;
         return (
           <Work
             key={index}
@@ -49,6 +50,7 @@ export default function FeatureWork() {
             githubLink={work.githubLink}
             livelnk={work.livelnk}
             githublnk={work.githublnk}
+            isLast={isLast}
           />
         );
       })}
@@ -65,6 +67,7 @@ function Work({
   githubLink,
   livelnk,
   githublnk,
+  isLast,
 }) {
   return (
     <div className="flex gap-3 w-full border-b-[1px] line py-5">
@@ -80,8 +83,8 @@ function Work({
         <div className="mt-2 nav-text text-[.65rem] flex gap-4">
           <Link
             to={livelnk}
-            target="_blank"
-            rel="noopener noreferrer"
+            target={isLast ? "_self" : "_blank"}
+            rel={isLast ? undefined : "noopener noreferrer"}
             className="hover-ink duration-200"
           >
             {liveLink}
