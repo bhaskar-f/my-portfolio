@@ -56,7 +56,7 @@ export default function HomeContent() {
 
         <div className="flex items-baseline gap-0 flex-wrap nav-text text-[.69rem] mt-10">
           <a
-            href="/resume.pdf"
+            href="./resume.pdf"
             download="Bhaskar_Resume.pdf"
             className="resume-link border-b-[.05rem] line hover-ink hover:border-[color:var(--ink)] duration-200"
           >
