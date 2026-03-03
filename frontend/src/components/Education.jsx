@@ -6,8 +6,8 @@ export default function Educations() {
       year: "2021 - 2024",
     },
     {
-      degree: "Full-Stack Development",
-      field: "By Harkirat Singh",
+      degree: "Full-Stack Development in MERN Stack",
+      field: "",
       year: "Ongoing",
     },
     {
