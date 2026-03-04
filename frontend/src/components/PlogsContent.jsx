@@ -45,14 +45,14 @@ export default function PlogsContent() {
 
   return (
     <div className="relative w-full h-full px-5">
-      <div className="info mt-3">
+      <div className="info mt-5">
         <h1 className="text-[2.25rem] leading-[2.4rem] font-normal main-text">
           Things I've built <br />
           <span>
             <i>& written.</i>
           </span>
         </h1>
-        <span className="muted inline-block text-[0.9rem] para">
+        <span className="muted inline-block mt-2 text-[0.9rem] para">
           Projects, essays, and experiments. In progress and shipped.
         </span>
       </div>

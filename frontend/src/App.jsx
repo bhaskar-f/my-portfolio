@@ -35,10 +35,10 @@ export default function App() {
         let hasInitializedScroll = false;
 
         if (scrollItems.length > 0) {
-          gsap.set(scrollItems, { opacity: 0, y: 50 });
+          gsap.set(scrollItems, { autoAlpha: 0 });
         }
         if (plogTabs.length > 0) {
-          gsap.set(plogTabs, { opacity: 0, y: 14 });
+          gsap.set(plogTabs, { autoAlpha: 0 });
         }
         if (plogsTabsHr.length > 0) {
           gsap.set(plogsTabsHr, {
@@ -53,18 +53,22 @@ export default function App() {
           hasInitializedScroll = true;
 
           if (plogTabs.length > 0) {
-            gsap.to(plogTabs, {
-              y: 0,
-              opacity: 1,
-              duration: 0.32,
-              stagger: 0.08,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: ".plogs-tabs",
-                start: "top 98%",
-                toggleActions: "play none none reverse",
+            gsap.fromTo(
+              plogTabs,
+              { y: 14, autoAlpha: 0 },
+              {
+                y: 0,
+                autoAlpha: 1,
+                duration: 0.32,
+                stagger: 0.08,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: ".plogs-tabs",
+                  start: "top 98%",
+                  toggleActions: "play none none reverse",
+                },
               },
-            });
+            );
           }
           if (plogsTabsHr.length > 0) {
             gsap.to(plogsTabsHr, {
@@ -80,17 +84,21 @@ export default function App() {
           }
 
           scrollItems.forEach((item) => {
-            gsap.to(item, {
-              y: 0,
-              opacity: 1,
-              duration: 0.7,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: item,
-                start: "top 90%",
-                toggleActions: "play none none reverse",
+            gsap.fromTo(
+              item,
+              { y: 50, autoAlpha: 0 },
+              {
+                y: 0,
+                autoAlpha: 1,
+                duration: 0.7,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: item,
+                  start: "top 90%",
+                  toggleActions: "play none none reverse",
+                },
               },
-            });
+            );
           });
 
           ScrollTrigger.refresh();
