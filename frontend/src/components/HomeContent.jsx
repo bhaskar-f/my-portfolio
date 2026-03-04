@@ -94,10 +94,10 @@ export default function HomeContent() {
           </a>
         </div>
       </div>
-      <hr className="hr1 line mt-15 mb-10" />
+      <hr className="hr1 line mt-12 mb-10" />
       <div className="featued-works">
         <h1 className="featuretext uppercase text-[0.7rem] nav-text">
-          Featured work
+          Featured works
         </h1>
         <hr className="hr2 line mt-5" />
         <FeatureWork className="scroll-trigger" />
