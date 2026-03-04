@@ -106,7 +106,7 @@ export default function HomeContent() {
     view all projects
   </Link>
 </div>
-      <hr className="line my-10" />
+      <hr className="line mt-15 mb-10" />
       <div className="skils">
         <h1 className="uppercase text-[0.7rem] nav-text">skills</h1>
         <hr className="line mt-5" />
