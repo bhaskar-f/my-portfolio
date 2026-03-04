@@ -1,13 +1,12 @@
-import { Link } from "react-router-dom";
-
 export default function ContactLinks() {
   const links = [
     {
-      field: "email",
-      handle: "emailme@bhaskar",
-      handlelink: "bsarkar.off.p@gmail.com",
+      label: "Email",
+      text: "Email me",
+      href: "mailto:bsarkar.off.p@gmail.com",
     },
     {
+<<<<<<< HEAD
       field: "github",
       handle: "click to see my github",
       handlelink: "https://github.com/bhaskar-f",
@@ -21,40 +20,49 @@ export default function ContactLinks() {
       field: "twitter / x",
       handle: "click to see my twitter profile",
       handlelink: "https://x.com/404_username_NF",
+=======
+      label: "GitHub",
+      text: "@bhaskar-f",
+      href: "https://github.com/bhaskar-f",
+    },
+    {
+      label: "LinkedIn",
+      text: "click to see my profile",
+      href: "https://www.linkedin.com/in/bhaskar-sarkar-1a1a6b31a",
+    },
+    {
+      label: "X",
+      text: "click to see my profile",
+      href: "https://x.com/404_username_NF",
+>>>>>>> 7d76f43 (view all projects added)
     },
   ];
 
   return (
     <div>
-      {links.map((link, index) => {
+      {links.map((item) => {
+        const isExternal = item.href.startsWith("http");
+
         return (
-          <Contactlink
-            key={index}
-            fields={link.field}
-            handle={link.handle}
-            handlelink={link.handlelink}
-          />
+          <a
+            key={item.label}
+            href={item.href}
+            target={isExternal ? "_blank" : undefined}
+            rel={isExternal ? "noopener noreferrer" : undefined}
+            className="group flex py-3 border-b-[1px] line w-full"
+          >
+            <div className="w-full transition-all duration-300 group-hover:ml-2 grid grid-cols-[6.25rem_1fr_6.25rem] sm:grid-cols-[8rem_1fr_8rem] items-center">
+              <h1 className="uppercase nav-text leading-none text-[.65rem] tracking-[0.08em]">
+                {item.label}
+              </h1>
+              <span className="block text-center text-[1.02rem] text-[var(--ink)] group-hover:underline underline-offset-3">
+                {item.text}
+              </span>
+              <span className="nav-text justify-self-end">{"↗"}</span>
+            </div>
+          </a>
         );
       })}
-    </div>
-  );
-}
-
-function Contactlink({ fields, handle, handlelink }) {
-  return (
-    <div className="flex justify-between py-3 border-b-[1px] line w-full group cursor-pointer">
-      <div className="transition-all duration-400 group-hover:ml-2">
-        <h1 className="uppercase group  nav-text leading-none text-[.65rem]">
-          {fields}
-        </h1>
-        <Link
-          to={handlelink}
-          className="text-[1.05rem] hover font-normal group-hover:underline"
-        >
-          {handle}
-        </Link>
-      </div>
-      <span className="nav-text">↗</span>
     </div>
   );
 }

@@ -1,10 +1,12 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import ContactLinks from "./ContactLinks";
 
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "")
   .trim()
   .replace(/\/+$/, "");
-const CONTACT_ENDPOINT = API_BASE_URL ? `${API_BASE_URL}/api/contact` : "/api/contact";
+const CONTACT_ENDPOINT = API_BASE_URL
+  ? `${API_BASE_URL}/api/contact`
+  : "/api/contact";
 
 export default function ContactContent() {
   const [formData, setFormData] = useState({
@@ -50,6 +52,7 @@ export default function ContactContent() {
       setIsSending(false);
     }
   };
+
   return (
     <div className="relative w-full h-full px-5">
       <div className="info mt-3">
@@ -125,7 +128,9 @@ export default function ContactContent() {
           {isSending ? "Sending your message..." : "Send →"}
         </button>
         {statusMessage && (
-          <p className="mt-3 text-[0.75rem] muted font-jetbrains">{statusMessage}</p>
+          <p className="mt-3 text-[0.75rem] muted font-jetbrains">
+            {statusMessage}
+          </p>
         )}
       </form>
 

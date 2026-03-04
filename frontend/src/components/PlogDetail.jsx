@@ -166,7 +166,7 @@ export default function PlogDetail() {
                     className={getActionClasses(action.variant)}
                   >
                     {action.label}
-                    <span aria-hidden>{"\u2197"}</span>
+                    <span aria-hidden>{"↗"}</span>
                   </a>
                 );
               })}

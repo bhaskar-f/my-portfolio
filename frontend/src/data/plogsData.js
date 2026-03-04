@@ -1,13 +1,13 @@
 export const PLOG_ITEMS = [
   {
-    id: "refocus_clone",
-    title: "Refocus Website Clone",
+    id: "refokus_clone",
+    title: "Refokus Website Clone",
     type: "project",
     createdAt: "2025-11-11T16:40:00.000Z",
     shortDescription:
-      "Animated Refocus website clone built with React, GSAP, and Framer Motion.",
+      "Animated Refokus website clone built with React, GSAP, and Framer Motion.",
     longDescription:
-      "Developed a pixel-accurate clone of the Refocus website using React, focusing on smooth UI transitions and modern animation patterns. Implemented advanced scroll-triggered animations with GSAP and interactive motion effects using Framer Motion. Emphasized performance optimization, clean component structure, and responsive design to closely replicate the original user experience.",
+      "Developed a pixel-accurate clone of the Refokus website using React, focusing on smooth UI transitions and modern animation patterns. Implemented advanced scroll-triggered animations with GSAP and interactive motion effects using Framer Motion. Emphasized performance optimization, clean component structure, and responsive design to closely replicate the original user experience.",
     tags: ["React", "GSAP", "Framer Motion", "Animations", "Frontend"],
     detail: {
       actions: [
@@ -84,6 +84,7 @@ export const PLOG_ITEMS = [
     },
   },
   {
+<<<<<<< HEAD
     id: "no_blogs_yet",
     title: "Blogs are coming",
     type: "blog",
@@ -92,6 +93,14 @@ export const PLOG_ITEMS = [
       "I am writing some blogs. not yet, but coming soon",
    
     tags: [],
+=======
+    id: "no-blogs-yet",
+    title: "NO Blogs Yet But comming soon",
+    type: "blog",
+    createdAt: "2026-01-04T08:10:00.000Z",
+    tags: [],
+    shortDescription: "Blogs coming soon",
+>>>>>>> 7d76f43 (view all projects added)
   },
   {
     id: "portfolio-website",

@@ -36,29 +36,31 @@ export default function HomeContent() {
   return (
     <div className="w-full h-full px-5 ">
       <div className="Info mt-2">
-        <h1 className="text-[3rem] md:text-[4rem] lg:text-[4.43rem] -mb-2.5 font-normal main-text">
-          <i>Bhaskar</i> <span>Sarkar</span>
-          <Motion.span
-            className="inline-block w-[2px] md:w-[3px] h-[3rem] md:h-[4.4rem] -mb-1.5 ml-[1.7px] bg-[var(--ink)]"
-            animate={{ opacity: [1, 1, 0, 0] }} // Animate between 0 and 1
-            transition={{
-              duration: 1, // Speed of one "pulse"
-              repeat: Infinity, // Loop forever
-              ease: "linear", // Keeps the timing consistent
-              times: [0, 0.5, 0.5, 1], // Smooth start/end for each pulse
-            }}
-          ></Motion.span>
-        </h1>
-        <span className="inline-block designation uppercase nav-text font-extralight text-[.8rem] mb-10  tracking-tight ">
-          Full-Stack Developer & Designer
-        </span>
-        <br />
-        <span className="inline-block text-[1.1rem] leading-[1.75rem] w-[90%]">
-          I build things that
-          <span className="font-medium"> work beautifully </span> and look like
-          they were meant to exist. Three years of shipping products, writing
-          systems, and caring about the details most people skip.
-        </span>
+        <div>
+          <h1 className="text-[3rem] md:text-[4rem] lg:text-[4.43rem] -mb-2.5 font-normal main-text">
+            <i>Bhaskar</i> <span>Sarkar</span>
+            <Motion.span
+              className="inline-block w-[2px] md:w-[3px] h-[3rem] md:h-[4.4rem] -mb-1.5 ml-[1.7px] bg-[var(--ink)]"
+              animate={{ opacity: [1, 1, 0, 0] }} // Animate between 0 and 1
+              transition={{
+                duration: 1, // Speed of one "pulse"
+                repeat: Infinity, // Loop forever
+                ease: "linear", // Keeps the timing consistent
+                times: [0, 0.5, 0.5, 1], // Smooth start/end for each pulse
+              }}
+            ></Motion.span>
+          </h1>
+          <span className="inline-block designation uppercase nav-text font-extralight text-[.8rem] mb-10  tracking-tight ">
+            Full-Stack Developer & Designer
+          </span>
+          <br />
+          <span className="inline-block text-[1.1rem] leading-[1.75rem] w-[90%]">
+            I build things that
+            <span className="font-medium"> work beautifully </span> and look
+            like they were meant to exist. Three years of shipping products,
+            writing systems, and caring about the details most people skip.
+          </span>
+        </div>
 
         <div className="mt-5 text-[0.7rem]">
           <h4 className="nav-text tracking-wide">
@@ -86,18 +88,19 @@ export default function HomeContent() {
             href={RESUME_SOURCE_URL}
             download={RESUME_DOWNLOAD_NAME}
             onClick={handleResumeDownload}
-            className="resume-link border-b-[.05rem] line hover-ink hover:border-[color:var(--ink)] duration-200"
+            className="resume-link border-b-[.05rem] line hover-ink hover-line-ink duration-200"
           >
             ↓ download résumé
           </a>
         </div>
       </div>
-      <hr className="line my-10" />
+      <hr className="line mt-15 mb-10" />
       <div className="featued-works">
         <h1 className="uppercase text-[0.7rem] nav-text">Featured work</h1>
         <hr className="line mt-5" />
         <FeatureWork />
       </div>
+<<<<<<< HEAD
       <div className="mt-4 flex justify-start">
   <Link
     to="/plogs/projects"
@@ -107,6 +110,18 @@ export default function HomeContent() {
   </Link>
 </div>
       <hr className="line mt-15 mb-10" />
+=======
+
+      <div className="mt-5 flex justify-start">
+        <Link
+          to="/plogs/projects"
+          className="nav-text text-[0.68rem] border-b line hover-line-ink uppercase hover-ink duration-200"
+        >
+          view all projects
+        </Link>
+      </div>
+      <hr className="line my-10" />
+>>>>>>> 7d76f43 (view all projects added)
       <div className="skils">
         <h1 className="uppercase text-[0.7rem] nav-text">skills</h1>
         <hr className="line mt-5" />
