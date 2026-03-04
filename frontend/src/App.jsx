@@ -22,7 +22,9 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 export default function App() {
   const isPlogDetailRoute = Boolean(useMatch("/plogs/:plogId"));
   const location = useLocation();
-  const isPlogsRoute = location.pathname.startsWith("/plogs");
+  const pathname = location.pathname;
+  const isPlogsRoute = pathname.startsWith("/plogs");
+  const isAboutOrContactRoute = pathname === "/about" || pathname === "/contact";
   const appRootRef = useRef(null);
   const locomotiveRef = useRef(null);
 
@@ -128,6 +130,65 @@ export default function App() {
 
         if (plogsIntroTl.duration() === 0) {
           initializePlogsScroll();
+        }
+        return;
+      } else if (isAboutOrContactRoute) {
+        const scrollItems = gsap.utils.toArray(".scroll-trigger");
+        let hasInitializedScroll = false;
+
+        if (scrollItems.length > 0) {
+          gsap.set(scrollItems, { autoAlpha: 0 });
+        }
+
+        const initializeSectionScroll = () => {
+          if (hasInitializedScroll) return;
+          hasInitializedScroll = true;
+
+          scrollItems.forEach((item) => {
+            const itemTop = item.getBoundingClientRect().top;
+            const isNearViewportFold = itemTop <= window.innerHeight + 120;
+
+            gsap.fromTo(
+              item,
+              {
+                y: isNearViewportFold ? 28 : 50,
+                autoAlpha: isNearViewportFold ? 0.22 : 0,
+              },
+              {
+                y: 0,
+                autoAlpha: 1,
+                duration: 0.7,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: item,
+                  start: "top 100%",
+                  toggleActions: "play none none reverse",
+                },
+              },
+            );
+          });
+
+          ScrollTrigger.refresh();
+        };
+
+        const sectionIntroTl = gsap.timeline({
+          onComplete: initializeSectionScroll,
+        });
+
+        sectionIntroTl
+          .from(".main-text", {
+            y: 100,
+            opacity: 0,
+            duration: 0.8,
+          })
+          .from(".para", {
+            y: 50,
+            opacity: 0,
+            duration: 0.5,
+          });
+
+        if (sectionIntroTl.duration() === 0) {
+          initializeSectionScroll();
         }
         return;
       } else {

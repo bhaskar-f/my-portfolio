@@ -271,3 +271,8 @@ body {
     display: none;
   }
 }
+@media (width <= 400px) {
+  .about-text {
+    line-height: 1.8rem;
+  }
+}

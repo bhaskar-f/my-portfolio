@@ -56,29 +56,29 @@ export default function ContactContent() {
   return (
     <div className="relative w-full h-full px-5">
       <div className="info mt-3">
-        <h1 className="text-[3.6rem] leading-[3.6rem] font-normal">
+        <h1 className="text-[3.6rem] leading-[3.6rem] font-normal main-text">
           Let's
           <br />
           <span>
             <i>talk.</i>
           </span>
         </h1>
-        <span className="muted text-[0.9rem] inline-block mt-5">
+        <span className="muted text-[0.9rem] inline-block mt-5 para">
           Project, collab, or just saying hi - my inbox is open.
         </span>
       </div>
 
-      <hr className="line mt-10" />
+      <hr className="scroll-trigger line mt-10" />
 
-      <div className="surface py-1">
+      <div className="scroll-trigger surface py-1">
         <ContactLinks />
       </div>
 
-      <div className="section-head nav-text text-[.65rem] uppercase mt-10">
+      <div className="section-head scroll-trigger nav-text text-[.65rem] uppercase mt-10">
         Or send a message
       </div>
 
-      <form onSubmit={handleEmail}>
+      <form onSubmit={handleEmail} className="scroll-trigger">
         <input type="hidden" name="_captcha" value="false" />
         <input type="hidden" name="_subject" value="Portfolio contact form" />
 
@@ -134,7 +134,7 @@ export default function ContactContent() {
         )}
       </form>
 
-      <hr className="line mt-12 mb-2" />
+      <hr className="scroll-trigger line mt-12 mb-2" />
     </div>
   );
 }
