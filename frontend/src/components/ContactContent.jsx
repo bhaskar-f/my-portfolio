@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import ContactLinks from "./ContactLinks";
 
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "")
@@ -91,7 +91,7 @@ export default function ContactContent() {
             onChange={handleChange}
             required
             className="text-[.95rem] mt-1 py-1 form-line duration-300"
-            placeholder="Jane Smith"
+            placeholder="John Doe"
           />
         </div>
 
@@ -104,7 +104,7 @@ export default function ContactContent() {
             onChange={handleChange}
             required
             className="text-[.95rem] mt-1 py-1 form-line duration-300"
-            placeholder="jane@example.com"
+            placeholder="john@example.com"
           />
         </div>
 
