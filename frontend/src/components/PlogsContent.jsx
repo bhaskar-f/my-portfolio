@@ -110,7 +110,7 @@ const getTabFromUrl = () => {
                   <span className="nav-text text-[0.55rem] uppercase tracking-[0.08em] border-[1px] line px-1.5 py-[2px]">
                     {PLOG_TYPE_BADGE[item.type] ?? item.type}
                   </span>
-                  {item.tags.map((tag, tagIndex) => {
+                  {item.tags!== [] && item.tags.map((tag, tagIndex) => {
                     return (
                       <span
                         key={`${item.id}-${tag}`}
