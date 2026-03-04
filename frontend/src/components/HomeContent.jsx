@@ -2,6 +2,7 @@ import { motion as Motion } from "framer-motion";
 import FeatureWork from "./FeatureWork";
 import Skills from "./Skills";
 import Educations from "./Education";
+import { Link } from "react-router-dom";
 
 const RESUME_SOURCE_URL = "/resume.pdf";
 const RESUME_DOWNLOAD_NAME = "Bhaskar's_Resume.pdf";
