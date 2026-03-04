@@ -6,7 +6,7 @@ export default function Timeline() {
       year: "2026 →",
     },
     {
-      heading: "Freelance prjects",
+      heading: "Freelance projects",
       desc: "Build a Online Coaching center Website",
       year: "2025",
     },
