@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-
-export default function FeatureWork() {
+export default function FeatureWork({ className = "scroll-trigger" }) {
   const works = [
     {
       heading: "A bug Diary",
@@ -41,6 +39,7 @@ export default function FeatureWork() {
         const isLast = index === works.length - 1;
         return (
           <Work
+            rowClassName={className}
             key={index}
             number={number < 10 ? "0" + number : number}
             Heading={work.heading}
@@ -68,9 +67,12 @@ function Work({
   livelnk,
   githublnk,
   isLast,
+  rowClassName,
 }) {
   return (
-    <div className="flex gap-3 w-full border-b-[1px] line py-5">
+    <div
+      className={`${rowClassName} flex gap-3 w-full border-b-[1px] line py-5`}
+    >
       <span className="text-[.65rem] faint-text font-[Jetbrains_mono] mt-2">
         {number}
       </span>
@@ -81,22 +83,22 @@ function Work({
         </h1>
         <p className="tex-[.55rem] muted">{description}</p>
         <div className="mt-2 nav-text text-[.65rem] flex gap-4">
-          <Link
-            to={livelnk}
+          <a
+            href={livelnk}
             target={isLast ? "_self" : "_blank"}
             rel={isLast ? undefined : "noopener noreferrer"}
             className="hover-ink duration-200"
           >
             {liveLink}
-          </Link>
-          <Link
-            to={githublnk}
+          </a>
+          <a
+            href={githublnk}
             target="_blank"
             rel="noopener noreferrer"
             className="hover-ink duration-200"
           >
             {githubLink}
-          </Link>
+          </a>
         </div>
       </div>
     </div>

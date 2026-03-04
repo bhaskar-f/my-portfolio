@@ -1,5 +1,14 @@
 import { useEffect, useRef } from "react";
-import { Navigate, Route, Routes, useLocation, useMatch } from "react-router-dom";
+import { useGSAP } from "@gsap/react";
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useMatch,
+} from "react-router-dom";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LocomotiveScroll from "locomotive-scroll";
 import Home from "./components/Home";
 import Plogs from "./components/Plogs";
@@ -8,12 +17,205 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import { Analytics } from "@vercel/analytics/react";
 
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+
 export default function App() {
   const isPlogDetailRoute = Boolean(useMatch("/plogs/:plogId"));
   const location = useLocation();
+  const isPlogsRoute = location.pathname.startsWith("/plogs");
+  const appRootRef = useRef(null);
   const locomotiveRef = useRef(null);
 
+  useGSAP(
+    () => {
+      if (isPlogsRoute) {
+        const plogTabs = gsap.utils.toArray(".plogs-tab");
+        const scrollItems = gsap.utils.toArray(".scroll-trigger");
+        const plogsTabsHr = gsap.utils.toArray(".plogs-tabs-hr");
+        let hasInitializedScroll = false;
+
+        if (scrollItems.length > 0) {
+          gsap.set(scrollItems, { opacity: 0, y: 50 });
+        }
+        if (plogTabs.length > 0) {
+          gsap.set(plogTabs, { opacity: 0, y: 14 });
+        }
+        if (plogsTabsHr.length > 0) {
+          gsap.set(plogsTabsHr, {
+            scaleX: 0,
+            transformOrigin: "left center",
+            opacity: 1,
+          });
+        }
+
+        const initializePlogsScroll = () => {
+          if (hasInitializedScroll) return;
+          hasInitializedScroll = true;
+
+          if (plogTabs.length > 0) {
+            gsap.to(plogTabs, {
+              y: 0,
+              opacity: 1,
+              duration: 0.32,
+              stagger: 0.08,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: ".plogs-tabs",
+                start: "top 98%",
+                toggleActions: "play none none reverse",
+              },
+            });
+          }
+          if (plogsTabsHr.length > 0) {
+            gsap.to(plogsTabsHr, {
+              scaleX: 1,
+              duration: 0.45,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: ".plogs-tabs",
+                start: "top 90%",
+                toggleActions: "play none none reverse",
+              },
+            });
+          }
+
+          scrollItems.forEach((item) => {
+            gsap.to(item, {
+              y: 0,
+              opacity: 1,
+              duration: 0.7,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: item,
+                start: "top 90%",
+                toggleActions: "play none none reverse",
+              },
+            });
+          });
+
+          ScrollTrigger.refresh();
+        };
+
+        const plogsIntroTl = gsap.timeline({
+          onComplete: initializePlogsScroll,
+        });
+
+        plogsIntroTl
+          .from(".main-text", {
+            y: 100,
+            opacity: 0,
+            duration: 0.8,
+          })
+          .from(".para", {
+            y: 50,
+            opacity: 0,
+            duration: 0.5,
+          });
+
+        if (plogsIntroTl.duration() === 0) {
+          initializePlogsScroll();
+        }
+        return;
+      } else {
+        const tl = gsap.timeline();
+
+        tl.from(".main-text", {
+          y: 200,
+          opacity: 0,
+          duration: 0.8,
+        })
+          .from(".designation", {
+            y: 100,
+            opacity: 0,
+            duration: 0.5,
+          })
+          .from(".para", {
+            y: 50,
+            opacity: 0,
+            duration: 0.5,
+          })
+          .from(".details1", {
+            y: 25,
+            opacity: 0,
+            duration: 0.2,
+          })
+          .from(".details2", {
+            y: 25,
+            opacity: 0,
+            duration: 0.2,
+          })
+          .from(".details3", {
+            y: 25,
+            opacity: 0,
+            duration: 0.2,
+          })
+          .from(".dresume", {
+            y: 50,
+            opacity: 0,
+            duration: 0.3,
+          })
+          .from(".hr1", {
+            y: 50,
+            opacity: 0,
+            duration: 0.3,
+          })
+          .from(".featuretext", {
+            y: 50,
+            opacity: 0,
+            duration: 0.3,
+          })
+          .from(".hr2", {
+            y: 50,
+            opacity: 0,
+            duration: 0.3,
+          });
+
+        const plogTabs = gsap.utils.toArray(".plogs-tab");
+        const scrollItems = gsap.utils.toArray(".scroll-trigger");
+
+        if (plogTabs.length > 0) {
+          gsap.from(plogTabs, {
+            y: 14,
+            opacity: 0,
+            duration: 0.32,
+            stagger: 0.08,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: ".plogs-tabs",
+              start: "top 90%",
+              toggleActions: "play none none reverse",
+            },
+          });
+        }
+
+        scrollItems.forEach((item) => {
+          gsap.from(item, {
+            y: 50,
+            opacity: 0,
+            duration: 0.7,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: item,
+              start: "top 90%",
+              toggleActions: "play none none reverse",
+            },
+          });
+        });
+
+        ScrollTrigger.refresh();
+      }
+    },
+    {
+      scope: appRootRef,
+      dependencies: [location.pathname],
+      revertOnUpdate: true,
+    },
+  );
+
   useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
     locomotiveRef.current = new LocomotiveScroll({
       lenisOptions: {
         allowNestedScroll: true,
@@ -59,6 +261,7 @@ export default function App() {
 
   return (
     <div
+      ref={appRootRef}
       className={`min-h-[100vh] w-full ${
         isPlogDetailRoute ? "" : "sm:max-w-[640px]"
       }`}

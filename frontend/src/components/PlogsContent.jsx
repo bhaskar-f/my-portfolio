@@ -46,19 +46,19 @@ export default function PlogsContent() {
   return (
     <div className="relative w-full h-full px-5">
       <div className="info mt-3">
-        <h1 className="text-[2.25rem] leading-[2.4rem] font-normal">
+        <h1 className="text-[2.25rem] leading-[2.4rem] font-normal main-text">
           Things I've built <br />
           <span>
             <i>& written.</i>
           </span>
         </h1>
-        <span className="muted text-[0.9rem]">
+        <span className="muted inline-block text-[0.9rem] para">
           Projects, essays, and experiments. In progress and shipped.
         </span>
       </div>
 
       <div className="sticky top-0 z-40 mt-8 surface">
-        <div className="flex gap-6 text-[0.63rem]">
+        <div className="plogs-tabs relative z-10 flex gap-6 text-[0.63rem] overflow-hidden">
           {PLOG_TABS.map((tab) => {
             const isActive = activeTab === tab.key;
 
@@ -70,7 +70,7 @@ export default function PlogsContent() {
                   setActiveTab(tab.key);
                   setSearchParams(tab.key === "all" ? {} : { tab: tab.key });
                 }}
-                className={`uppercase nav-text py-2 cursor-pointer border-b-[1px] duration-200 ${
+                className={`plogs-tab uppercase nav-text py-2 cursor-pointer border-b-[1px] duration-200 ${
                   isActive
                     ? "!text-[var(--ink)] border-[var(--ink)]"
                     : "border-transparent hover:!text-[var(--ink)]"
@@ -81,7 +81,7 @@ export default function PlogsContent() {
             );
           })}
         </div>
-        <hr className="line -mt-[1px]" />
+        <hr className="plogs-tabs-hr line relative z-0" />
       </div>
 
       <div className="mt-2">
@@ -90,7 +90,7 @@ export default function PlogsContent() {
             <Link
               key={item.id}
               to={`/plogs/${item.id}`}
-              className="group block border-b-[1px] line py-5"
+              className="scroll-trigger group block border-b-[1px] line py-5"
             >
               <article className="w-full">
                 <div className="flex justify-between items-start gap-4">

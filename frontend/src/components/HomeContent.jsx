@@ -50,11 +50,11 @@ export default function HomeContent() {
               }}
             ></Motion.span>
           </h1>
-          <span className="inline-block designation uppercase nav-text font-extralight text-[.8rem] mb-10  tracking-tight ">
+          <span className="designation inline-block designation uppercase nav-text font-extralight text-[.8rem] mb-10  tracking-tight ">
             Full-Stack Developer & Designer
           </span>
           <br />
-          <span className="inline-block text-[1.1rem] leading-[1.75rem] w-[90%]">
+          <span className="para inline-block text-[1.1rem] leading-[1.75rem] w-[90%]">
             I build things that
             <span className="font-medium"> work beautifully </span> and look
             like they were meant to exist. Three years of shipping products,
@@ -63,19 +63,19 @@ export default function HomeContent() {
         </div>
 
         <div className="mt-5 text-[0.7rem]">
-          <h4 className="nav-text tracking-wide">
+          <h4 className="details1 nav-text tracking-wide">
             Currently
             <span className="ink ml-4.5 sm:ml-5 tracking-wide sm:tracking-widest">
               Working Independently
             </span>
           </h4>
-          <h4 className="nav-text tracking-wide">
+          <h4 className="details2 nav-text tracking-wide">
             Based in
             <span className="ink ml-4.5 sm:ml-5 tracking-wide sm:tracking-widest">
               CoochBehar, WB, India
             </span>
           </h4>
-          <h4 className="nav-text tracking-wide ">
+          <h4 className="details3 nav-text tracking-wide ">
             Working on
             <span className="ink ml-3 sm:ml-5 tracking-normal sm:tracking-widest ">
               System Designing & Side Projects
@@ -83,24 +83,26 @@ export default function HomeContent() {
           </h4>
         </div>
 
-        <div className="flex items-baseline gap-0 flex-wrap nav-text text-[.69rem] mt-10">
+        <div className="dresume flex items-baseline gap-0 flex-wrap nav-text text-[.69rem] mt-10">
           <a
             href={RESUME_SOURCE_URL}
             download={RESUME_DOWNLOAD_NAME}
             onClick={handleResumeDownload}
-            className="resume-link border-b-[.05rem] line hover-ink hover-line-ink duration-200"
+            className=" resume-link border-b-[.05rem] line hover-ink hover-line-ink duration-200"
           >
             ↓ download résumé
           </a>
         </div>
       </div>
-      <hr className="line mt-15 mb-10" />
+      <hr className="hr1 line mt-15 mb-10" />
       <div className="featued-works">
-        <h1 className="uppercase text-[0.7rem] nav-text">Featured work</h1>
-        <hr className="line mt-5" />
-        <FeatureWork />
+        <h1 className="featuretext uppercase text-[0.7rem] nav-text">
+          Featured work
+        </h1>
+        <hr className="hr2 line mt-5" />
+        <FeatureWork className="scroll-trigger" />
       </div>
-      <div className="mt-5 flex justify-start">
+      <div className="scroll-trigger mt-5 flex justify-start">
         <Link
           to="/plogs/projects"
           className="nav-text text-[0.68rem] border-b line hover-line-ink uppercase hover-ink duration-200"
@@ -108,20 +110,22 @@ export default function HomeContent() {
           view all projects
         </Link>
       </div>
-      <hr className="line my-10" />
+      <hr className="scroll-trigger line my-10" />
       <div className="skils">
-        <h1 className="uppercase text-[0.7rem] nav-text">skills</h1>
-        <hr className="line mt-5" />
+        <h1 className="scroll-trigger uppercase text-[0.7rem] nav-text">
+          skills
+        </h1>
+        <hr className="scroll-trigger line mt-5" />
 
-        <Skills />
+        <Skills className="scroll-trigger" />
       </div>
-      <hr className="line my-10" />
+      <hr className="scroll-trigger line my-10" />
       <div className="education">
-        <h1 className="uppercase text-[0.7rem] nav-text">
+        <h1 className="scroll-trigger uppercase text-[0.7rem] nav-text">
           Education & cirtifications
         </h1>
-        <hr className="line mt-5" />
-        <Educations />
+        <hr className="scroll-trigger line mt-5" />
+        <Educations className="scroll-trigger" />
       </div>
     </div>
   );
