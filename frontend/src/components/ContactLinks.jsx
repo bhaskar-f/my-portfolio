@@ -2,22 +2,22 @@ export default function ContactLinks() {
   const links = [
     {
       label: "Email",
-      text: "Email me",
+      text: "Send an email",
       href: "mailto:bsarkar.off.p@gmail.com",
     },
     {
       label: "GitHub",
-      text: "click to see my github",
+      text: "See projects",
       href: "https://github.com/bhaskar-f",
     },
     {
       label: "LinkedIn",
-      text: "click to see my linkedin",
+      text: "Connect professionally",
       href: "https://www.linkedin.com/in/bhaskar-sarkar-1a1a6b31a",
     },
     {
       label: "X",
-      text: "click to see my twitter",
+      text: "Follow updates",
       href: "https://x.com/404_username_NF",
     },
   ];
