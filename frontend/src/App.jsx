@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Route, Routes, useLocation, useMatch } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation, useMatch } from "react-router-dom";
 import LocomotiveScroll from "locomotive-scroll";
 import Home from "./components/Home";
 import Plogs from "./components/Plogs";
@@ -64,6 +64,10 @@ export default function App() {
     >
       <Routes>
         <Route path="/" element={<Home />} />
+         <Route
+    path="/plogs/projects"
+    element={<Navigate to="/plogs?tab=project" replace />}
+  />
         <Route path="/plogs" element={<Plogs />}>
           <Route path=":plogId" element={<PlogDetail />} />
         </Route>
