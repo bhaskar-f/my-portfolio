@@ -84,23 +84,12 @@ export const PLOG_ITEMS = [
     },
   },
   {
-<<<<<<< HEAD
-    id: "no_blogs_yet",
-    title: "Blogs are coming",
-    type: "blog",
-    createdAt: "2026-01-04T08:10:00.000Z",
-    shortDescription:
-      "I am writing some blogs. not yet, but coming soon",
-   
-    tags: [],
-=======
     id: "no-blogs-yet",
     title: "NO Blogs Yet But comming soon",
     type: "blog",
     createdAt: "2026-01-04T08:10:00.000Z",
     tags: [],
     shortDescription: "Blogs coming soon",
->>>>>>> 7d76f43 (view all projects added)
   },
   {
     id: "portfolio-website",

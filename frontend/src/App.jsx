@@ -1,23 +1,12 @@
 import { useEffect, useRef } from "react";
-<<<<<<< HEAD
 import { Navigate, Route, Routes, useLocation, useMatch } from "react-router-dom";
-=======
-import {
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-  useMatch,
-} from "react-router-dom";
->>>>>>> 7d76f43 (view all projects added)
 import LocomotiveScroll from "locomotive-scroll";
 import Home from "./components/Home";
 import Plogs from "./components/Plogs";
 import PlogDetail from "./components/PlogDetail";
 import About from "./components/About";
 import Contact from "./components/Contact";
-import { Analytics } from '@vercel/analytics/react';
-
+import { Analytics } from "@vercel/analytics/react";
 
 export default function App() {
   const isPlogDetailRoute = Boolean(useMatch("/plogs/:plogId"));
@@ -76,10 +65,6 @@ export default function App() {
     >
       <Routes>
         <Route path="/" element={<Home />} />
-         <Route
-    path="/plogs/projects"
-    element={<Navigate to="/plogs?tab=project" replace />}
-  />
         <Route path="/plogs" element={<Plogs />}>
           <Route path=":plogId" element={<PlogDetail />} />
         </Route>
@@ -90,7 +75,7 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
-      <Analytics/>
+      <Analytics />
     </div>
   );
 }

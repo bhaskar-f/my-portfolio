@@ -100,18 +100,6 @@ export default function HomeContent() {
         <hr className="line mt-5" />
         <FeatureWork />
       </div>
-<<<<<<< HEAD
-      <div className="mt-4 flex justify-start">
-  <Link
-    to="/plogs/projects"
-    className="nav-text text-[0.68rem] uppercase border-b line hover-line-ink hover-ink duration-200"
-  >
-    view all projects
-  </Link>
-</div>
-      <hr className="line mt-15 mb-10" />
-=======
-
       <div className="mt-5 flex justify-start">
         <Link
           to="/plogs/projects"
@@ -121,7 +109,6 @@ export default function HomeContent() {
         </Link>
       </div>
       <hr className="line my-10" />
->>>>>>> 7d76f43 (view all projects added)
       <div className="skils">
         <h1 className="uppercase text-[0.7rem] nav-text">skills</h1>
         <hr className="line mt-5" />

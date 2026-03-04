@@ -6,21 +6,6 @@ export default function ContactLinks() {
       href: "mailto:bsarkar.off.p@gmail.com",
     },
     {
-<<<<<<< HEAD
-      field: "github",
-      handle: "click to see my github",
-      handlelink: "https://github.com/bhaskar-f",
-    },
-    {
-      field: "likedin",
-      handle: "click to see my linkedin profile",
-      handlelink: "https://www.linkedin.com/in/bhaskar-sarkar-1a1a6b31a",
-    },
-    {
-      field: "twitter / x",
-      handle: "click to see my twitter profile",
-      handlelink: "https://x.com/404_username_NF",
-=======
       label: "GitHub",
       text: "@bhaskar-f",
       href: "https://github.com/bhaskar-f",
@@ -34,7 +19,6 @@ export default function ContactLinks() {
       label: "X",
       text: "click to see my profile",
       href: "https://x.com/404_username_NF",
->>>>>>> 7d76f43 (view all projects added)
     },
   ];
 
@@ -58,7 +42,7 @@ export default function ContactLinks() {
               <span className="block text-center text-[1.02rem] text-[var(--ink)] group-hover:underline underline-offset-3">
                 {item.text}
               </span>
-              <span className="nav-text justify-self-end">{"↗"}</span>
+              <span className="nav-text justify-self-end">{"\u2197"}</span>
             </div>
           </a>
         );

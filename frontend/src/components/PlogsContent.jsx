@@ -1,9 +1,5 @@
 import { Link, useSearchParams } from "react-router-dom";
-<<<<<<< HEAD
-import { useMemo, useState } from "react";
-=======
 import { useEffect, useMemo, useState } from "react";
->>>>>>> 7d76f43 (view all projects added)
 import {
   PLOG_TABS,
   PLOG_TYPE_BADGE,
@@ -14,27 +10,14 @@ import {
 
 export default function PlogsContent() {
   const [searchParams, setSearchParams] = useSearchParams();
-const validTabs = new Set(PLOG_TABS.map((t) => t.key));
-
-const getTabFromUrl = () => {
-  const tab = searchParams.get("tab");
-  return validTabs.has(tab) ? tab : "all";
-};
-
-  const [activeTab, setActiveTab] = useState("all");
-<<<<<<< HEAD
-  useEffect(() => {
-  setActiveTab(getTabFromUrl());
-}, [searchParams]);
-=======
-  const [searchParams, setSearchParams] = useSearchParams();
   const validTabs = new Set(PLOG_TABS.map((t) => t.key));
 
   const getTabFromUrl = () => {
     const tab = searchParams.get("tab");
     return validTabs.has(tab) ? tab : "all";
   };
->>>>>>> 7d76f43 (view all projects added)
+
+  const [activeTab, setActiveTab] = useState("all");
 
   const sortedByType = useMemo(() => {
     return groupAndSortByType();
@@ -55,6 +38,7 @@ const getTabFromUrl = () => {
 
     return interleaveByType(sortedByType, typeOrder);
   }, [activeTab, sortedByType]);
+
   useEffect(() => {
     setActiveTab(getTabFromUrl());
   }, [searchParams]);
@@ -83,16 +67,9 @@ const getTabFromUrl = () => {
                 key={tab.key}
                 type="button"
                 onClick={() => {
-<<<<<<< HEAD
-  setActiveTab(tab.key);
-  setSearchParams(tab.key === "all" ? {} : { tab: tab.key });
-}}
-
-=======
                   setActiveTab(tab.key);
                   setSearchParams(tab.key === "all" ? {} : { tab: tab.key });
                 }}
->>>>>>> 7d76f43 (view all projects added)
                 className={`uppercase nav-text py-2 cursor-pointer border-b-[1px] duration-200 ${
                   isActive
                     ? "!text-[var(--ink)] border-[var(--ink)]"
@@ -133,11 +110,7 @@ const getTabFromUrl = () => {
                   <span className="nav-text text-[0.55rem] uppercase tracking-[0.08em] border-[1px] line px-1.5 py-[2px]">
                     {PLOG_TYPE_BADGE[item.type] ?? item.type}
                   </span>
-<<<<<<< HEAD
-                  {item.tags!== [] && item.tags.map((tag, tagIndex) => {
-=======
                   {(item.tags ?? []).map((tag, tagIndex) => {
->>>>>>> 7d76f43 (view all projects added)
                     return (
                       <span
                         key={`${item.id}-${tag}`}
