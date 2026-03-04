@@ -98,7 +98,7 @@ export default function HomeContent() {
         <hr className="line mt-5" />
         <FeatureWork />
       </div>
-      <div className="mt-4 flex justify-end">
+      <div className="mt-4 flex justify-start">
   <Link
     to="/plogs/projects"
     className="nav-text text-[0.68rem] uppercase border-b line hover-line-ink hover-ink duration-200"
