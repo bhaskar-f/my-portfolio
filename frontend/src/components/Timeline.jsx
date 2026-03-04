@@ -1,7 +1,7 @@
 export default function Timeline() {
   const timeline = [
     {
-      heading: "Side prjects",
+      heading: "Side projects",
       desc: "Trying to solve realworld problems with tech",
       year: "2026 →",
     },
