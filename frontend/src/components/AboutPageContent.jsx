@@ -10,7 +10,7 @@ export default function AboutPageContent() {
           (usually me, six months later).
         </h1>
         <p className="text-[.98rem] muted mt-10">
-          I started tinkering with HTML and CSS to make some a fan site. That
+          I started tinkering with HTML and CSS to make a fan site. That
           curiosity never stopped. Today I build products real people use(not
           yet but will) and still get a kick every time something ships. Outside
           work: reading about system design, over-engineering side projects,
