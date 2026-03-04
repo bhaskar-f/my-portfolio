@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useMemo, useState } from "react";
 import {
   PLOG_TABS,
@@ -9,7 +9,18 @@ import {
 } from "../data/plogsData";
 
 export default function PlogsContent() {
+  const [searchParams, setSearchParams] = useSearchParams();
+const validTabs = new Set(PLOG_TABS.map((t) => t.key));
+
+const getTabFromUrl = () => {
+  const tab = searchParams.get("tab");
+  return validTabs.has(tab) ? tab : "all";
+};
+
   const [activeTab, setActiveTab] = useState("all");
+  useEffect(() => {
+  setActiveTab(getTabFromUrl());
+}, [searchParams]);
 
   const sortedByType = useMemo(() => {
     return groupAndSortByType();
@@ -54,7 +65,11 @@ export default function PlogsContent() {
               <button
                 key={tab.key}
                 type="button"
-                onClick={() => setActiveTab(tab.key)}
+                onClick={() => {
+  setActiveTab(tab.key);
+  setSearchParams(tab.key === "all" ? {} : { tab: tab.key });
+}}
+
                 className={`uppercase nav-text py-2 cursor-pointer border-b-[1px] duration-200 ${
                   isActive
                     ? "!text-[var(--ink)] border-[var(--ink)]"
