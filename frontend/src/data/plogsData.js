@@ -84,15 +84,14 @@ export const PLOG_ITEMS = [
     },
   },
   {
-    id: "api-rate-limit",
-    title: "API Rate Limiting That Scales",
+    id: "no_blogs_yet",
+    title: "Blogs are coming",
     type: "blog",
     createdAt: "2026-01-04T08:10:00.000Z",
     shortDescription:
-      "A practical guide to building fair, high-throughput rate limiting.",
-    longDescription:
-      "Explained token-bucket and sliding-window approaches, distributed counters, and edge caching tradeoffs. Covered real production constraints like burst traffic, shared keys, and graceful degradation under load.",
-    tags: ["Backend", "Redis", "API", "Performance"],
+      "I am writing some blogs. not yet, but coming soon",
+   
+    tags: [],
   },
   {
     id: "portfolio-website",
