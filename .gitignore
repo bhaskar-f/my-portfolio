@@ -7,8 +7,7 @@ frontend/dist-ssr/
 frontend/.vite/
 backend/dist/
 coverage/
-preview.html
-requirements.md
+
 
 # Environment files (secrets)
 backend/.env
