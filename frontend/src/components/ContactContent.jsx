@@ -70,7 +70,7 @@ export default function ContactContent() {
 
       <hr className="scroll-trigger line mt-10" />
 
-      <div className="scroll-trigger surface py-1">
+      <div className="surface py-1">
         <ContactLinks />
       </div>
 
@@ -78,11 +78,11 @@ export default function ContactContent() {
         Or send a message
       </div>
 
-      <form onSubmit={handleEmail} className="scroll-trigger">
+      <form onSubmit={handleEmail}>
         <input type="hidden" name="_captcha" value="false" />
         <input type="hidden" name="_subject" value="Portfolio contact form" />
 
-        <div className="field flex flex-col mt-5">
+        <div className="field scroll-trigger flex flex-col mt-5">
           <label className="nav-text text-[.65rem] uppercase">Name</label>
           <input
             type="text"
@@ -95,7 +95,7 @@ export default function ContactContent() {
           />
         </div>
 
-        <div className="field flex flex-col mt-3">
+        <div className="field scroll-trigger flex flex-col mt-3">
           <label className="nav-text text-[.65rem] uppercase">Email</label>
           <input
             type="email"
@@ -108,7 +108,7 @@ export default function ContactContent() {
           />
         </div>
 
-        <div className="field flex flex-col mt-3 mb-7">
+        <div className="field scroll-trigger flex flex-col mt-3 mb-7">
           <label className="nav-text text-[.65rem]  uppercase">Message</label>
           <textarea
             name="message"
@@ -123,12 +123,12 @@ export default function ContactContent() {
         <button
           type="submit"
           disabled={isSending}
-          className="send-btn bg-[var(--ink)] py-2.5 text-[var(--bg)] px-6.5 font-jetbrains hover:opacity-90 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed uppercase text-[0.67rem]"
+          className="send-btn scroll-trigger bg-[var(--ink)] py-2.5 text-[var(--bg)] px-6.5 font-jetbrains hover:opacity-90 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed uppercase text-[0.67rem]"
         >
           {isSending ? "Sending your message..." : "Send →"}
         </button>
         {statusMessage && (
-          <p className="mt-3 text-[0.75rem] muted font-jetbrains">
+          <p className="scroll-trigger mt-3 text-[0.75rem] muted font-jetbrains">
             {statusMessage}
           </p>
         )}

@@ -23,7 +23,7 @@ export default function ContactLinks() {
   ];
 
   return (
-    <div>
+    <div className="contact-links-list">
       {links.map((item) => {
         const isExternal = item.href.startsWith("http");
 
@@ -33,7 +33,7 @@ export default function ContactLinks() {
             href={item.href}
             target={isExternal ? "_blank" : undefined}
             rel={isExternal ? "noopener noreferrer" : undefined}
-            className="group flex py-3 border-b-[1px] line w-full"
+            className="scroll-trigger contact-link-item group flex py-3 border-b-[1px] line w-full"
           >
             <div className="w-full transition-all duration-300 group-hover:ml-2 grid grid-cols-[6.25rem_1fr_6.25rem] sm:grid-cols-[8rem_1fr_8rem] items-center">
               <h1 className="uppercase nav-text leading-none text-[.65rem] tracking-[0.08em]">

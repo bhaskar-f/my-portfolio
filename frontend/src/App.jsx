@@ -24,7 +24,8 @@ export default function App() {
   const location = useLocation();
   const pathname = location.pathname;
   const isPlogsRoute = pathname.startsWith("/plogs");
-  const isAboutOrContactRoute = pathname === "/about" || pathname === "/contact";
+  const isAboutOrContactRoute =
+    pathname === "/about" || pathname === "/contact";
   const appRootRef = useRef(null);
   const locomotiveRef = useRef(null);
 
@@ -134,17 +135,34 @@ export default function App() {
         return;
       } else if (isAboutOrContactRoute) {
         const scrollItems = gsap.utils.toArray(".scroll-trigger");
+        const contactLinkItems =
+          pathname === "/contact"
+            ? gsap.utils.toArray(".contact-link-item")
+            : [];
+        const timelineItems =
+          pathname === "/about" ? gsap.utils.toArray(".timeline-item") : [];
+        const genericScrollItems = scrollItems.filter(
+          (item) =>
+            !item.classList.contains("contact-link-item") &&
+            !item.classList.contains("timeline-item"),
+        );
         let hasInitializedScroll = false;
 
-        if (scrollItems.length > 0) {
-          gsap.set(scrollItems, { autoAlpha: 0 });
+        if (genericScrollItems.length > 0) {
+          gsap.set(genericScrollItems, { autoAlpha: 0 });
+        }
+        if (contactLinkItems.length > 0) {
+          gsap.set(contactLinkItems, { autoAlpha: 0 });
+        }
+        if (timelineItems.length > 0) {
+          gsap.set(timelineItems, { autoAlpha: 0 });
         }
 
         const initializeSectionScroll = () => {
           if (hasInitializedScroll) return;
           hasInitializedScroll = true;
 
-          scrollItems.forEach((item) => {
+          genericScrollItems.forEach((item) => {
             const itemTop = item.getBoundingClientRect().top;
             const isNearViewportFold = itemTop <= window.innerHeight + 120;
 
@@ -167,6 +185,44 @@ export default function App() {
               },
             );
           });
+
+          if (contactLinkItems.length > 0) {
+            gsap.fromTo(
+              contactLinkItems,
+              { y: 28, autoAlpha: 0 },
+              {
+                y: 0,
+                autoAlpha: 1,
+                duration: 0.55,
+                stagger: 0.12,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: ".contact-links-list",
+                  start: "top 100%",
+                  toggleActions: "play none none reverse",
+                },
+              },
+            );
+          }
+
+          if (timelineItems.length > 0) {
+            gsap.fromTo(
+              timelineItems,
+              { y: 28, autoAlpha: 0 },
+              {
+                y: 0,
+                autoAlpha: 1,
+                duration: 0.55,
+                stagger: 0.12,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: ".timeline-list",
+                  start: "top 100%",
+                  toggleActions: "play none none reverse",
+                },
+              },
+            );
+          }
 
           ScrollTrigger.refresh();
         };
@@ -250,7 +306,7 @@ export default function App() {
 
         if (plogTabs.length > 0) {
           gsap.from(plogTabs, {
-            y: 14,
+            y: 15,
             opacity: 0,
             duration: 0.32,
             stagger: 0.08,
@@ -265,7 +321,7 @@ export default function App() {
 
         scrollItems.forEach((item) => {
           gsap.from(item, {
-            y: 50,
+            y: 70,
             opacity: 0,
             duration: 0.7,
             ease: "power2.out",

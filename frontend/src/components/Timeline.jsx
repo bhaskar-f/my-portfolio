@@ -13,7 +13,7 @@ export default function Timeline() {
   ];
 
   return (
-    <div>
+    <div className="timeline-list">
       {timeline.map((time, index) => {
         return (
           <Time
@@ -30,7 +30,7 @@ export default function Timeline() {
 
 function Time({ heading, desc, year }) {
   return (
-    <div className="flex gap-10 py-2 border-b-[1px] line w-full last:border-b-2">
+    <div className="scroll-trigger timeline-item flex gap-10 py-2 border-b-[1px] line w-full last:border-b-2">
       <span className="nav-text text-[.65rem] w-[14%] sm:w-[10%] ">{year}</span>
       <div>
         <h1 className=" text-[1rem] font-normal ">{heading}</h1>

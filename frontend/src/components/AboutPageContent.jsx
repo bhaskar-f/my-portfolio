@@ -22,7 +22,7 @@ export default function AboutPageContent() {
           timeline
         </h1>
         <hr className="scroll-trigger line mt-5" />
-        <div className="scroll-trigger">
+        <div>
           <Timeline />
         </div>
       </div>
