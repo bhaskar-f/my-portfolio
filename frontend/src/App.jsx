@@ -77,16 +77,22 @@ export default function App() {
               ease: "power2.out",
               scrollTrigger: {
                 trigger: ".plogs-tabs",
-                start: "top 90%",
+                start: "top 95%",
                 toggleActions: "play none none reverse",
               },
             });
           }
 
           scrollItems.forEach((item) => {
+            const itemTop = item.getBoundingClientRect().top;
+            const isNearViewportFold = itemTop <= window.innerHeight + 120;
+
             gsap.fromTo(
               item,
-              { y: 50, autoAlpha: 0 },
+              {
+                y: isNearViewportFold ? 28 : 50,
+                autoAlpha: isNearViewportFold ? 0.22 : 0,
+              },
               {
                 y: 0,
                 autoAlpha: 1,
@@ -94,7 +100,7 @@ export default function App() {
                 ease: "power2.out",
                 scrollTrigger: {
                   trigger: item,
-                  start: "top 90%",
+                  start: "top 100%",
                   toggleActions: "play none none reverse",
                 },
               },
@@ -190,7 +196,7 @@ export default function App() {
             ease: "power2.out",
             scrollTrigger: {
               trigger: ".plogs-tabs",
-              start: "top 90%",
+              start: "top 95%",
               toggleActions: "play none none reverse",
             },
           });
@@ -204,7 +210,7 @@ export default function App() {
             ease: "power2.out",
             scrollTrigger: {
               trigger: item,
-              start: "top 90%",
+              start: "top 95%",
               toggleActions: "play none none reverse",
             },
           });

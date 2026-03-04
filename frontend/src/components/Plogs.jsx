@@ -20,6 +20,12 @@ export default function Plogs() {
         <PlogsContent />
         <Footer />
       </div>
+      {!isDetailOpen ? (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-x-0 bottom-0 mx-auto h-20 w-full sm:max-w-[640px] z-30 bg-gradient-to-b from-transparent to-[var(--bg)] backdrop-blur-[1px]"
+        />
+      ) : null}
       {isDetailOpen ? <Outlet /> : null}
     </div>
   );
