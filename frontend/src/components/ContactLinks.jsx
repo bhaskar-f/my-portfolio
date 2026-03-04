@@ -7,17 +7,17 @@ export default function ContactLinks() {
     },
     {
       label: "GitHub",
-      text: "@bhaskar-f",
+      text: "click to see my github",
       href: "https://github.com/bhaskar-f",
     },
     {
       label: "LinkedIn",
-      text: "click to see my profile",
+      text: "click to see my linkedin",
       href: "https://www.linkedin.com/in/bhaskar-sarkar-1a1a6b31a",
     },
     {
       label: "X",
-      text: "click to see my profile",
+      text: "click to see my twitter",
       href: "https://x.com/404_username_NF",
     },
   ];
