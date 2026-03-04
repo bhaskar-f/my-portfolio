@@ -9,17 +9,17 @@ export default function ContactLinks() {
     },
     {
       field: "github",
-      handle: "github.com/mygithub",
+      handle: "click to see my github",
       handlelink: "https://github.com/bhaskar-f",
     },
     {
       field: "likedin",
-      handle: "linkedin.com/mylinkedinprofile",
+      handle: "click to see my linkedin profile",
       handlelink: "https://www.linkedin.com/in/bhaskar-sarkar-1a1a6b31a",
     },
     {
       field: "twitter / x",
-      handle: "@mytwitterprofile",
+      handle: "click to see my twitter profile",
       handlelink: "https://x.com/404_username_NF",
     },
   ];
