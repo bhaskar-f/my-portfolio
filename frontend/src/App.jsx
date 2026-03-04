@@ -6,6 +6,8 @@ import Plogs from "./components/Plogs";
 import PlogDetail from "./components/PlogDetail";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import { Analytics } from '@vercel/analytics/react';
+
 
 export default function App() {
   const isPlogDetailRoute = Boolean(useMatch("/plogs/:plogId"));
@@ -74,6 +76,7 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
+      <Analytics/>
     </div>
   );
 }
