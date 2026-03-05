@@ -363,6 +363,7 @@ export default function App() {
   useEffect(() => {
     const handleResize = () => {
       locomotiveRef.current?.resize();
+      ScrollTrigger.refresh();
     };
 
     window.addEventListener("resize", handleResize);
@@ -387,6 +388,7 @@ export default function App() {
       }
 
       locomotiveRef.current?.resize();
+      ScrollTrigger.refresh();
     });
   }, [location.pathname]);
 
