@@ -37,7 +37,7 @@ export default function Educations({ className = "scroll-trigger" }) {
   );
 }
 
-function Education({ degree, field, year, rolclass }) {
+function Education({ degree, field, year, certificate, rolclass }) {
   return (
     <div
       className={`${rolclass} flex flex-col sm:flex-row justify-between py-2 border-b-[1px] line w-full last:border-b-2`}
