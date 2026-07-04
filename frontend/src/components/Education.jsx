@@ -30,6 +30,7 @@ export default function Educations({ className = "scroll-trigger" }) {
             degree={cirtification.degree}
             field={cirtification.field}
             year={cirtification.year}
+            certificate={cirtification.certificate}
           />
         );
       })}
