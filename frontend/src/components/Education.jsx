@@ -8,7 +8,10 @@ export default function Educations({ className = "scroll-trigger" }) {
     {
       degree: "Full-Stack Development in MERN Stack",
       field: "",
-      year: "Ongoing",
+       certificate: {
+        text: "View Certificate",
+        url: "https://drive.google.com/file/d/1_ioOzIG2wYkhgCcFLFRD1sqaXDPBhEtv/view", // <-- Replace with your certificate URL
+      },
     },
     {
       degree: "DSA",
@@ -43,7 +46,18 @@ function Education({ degree, field, year, rolclass }) {
         <h1 className=" text-[1rem] font-normal ">{degree}</h1>
         <h4 className="text-[.88rem] muted">{field} </h4>
       </div>
-      <span className="nav-text text-[.65rem]">{year}</span>
+      {certificate ? (
+        <a
+          href={certificate.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="nav-text text-[.65rem] underline hover:opacity-80 transition"
+        >
+          {certificate.text}
+        </a>
+      ) : (
+        <span className="nav-text text-[.65rem]">{year}</span>
+      )}
     </div>
   );
 }
