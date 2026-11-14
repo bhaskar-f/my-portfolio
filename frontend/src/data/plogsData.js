@@ -1,5 +1,94 @@
 export const PLOG_ITEMS = [
   {
+    id: "studenv",
+    title: "Studenv",
+    type: "project",
+    createdAt: "2026-11-14T00:00:00.000Z",
+    shortDescription:
+      "A learning workspace combining study resources, notes, video learning, and personal knowledge management.",
+    longDescription:
+      "Studenv brings study resources, notes, video learning, and personal knowledge management into one learning workspace. It is designed to help learners work with their course material and build connected knowledge in one place.",
+    tags: ["Next.js", "TypeScript", "Node.js", "Prisma", "PostgreSQL", "Backblaze B2", "AWS SDK v3"],
+    detail: {
+      actions: [
+        { label: "Visit Studenv", href: "https://studenv-online.vercel.app", variant: "filled" },
+      ],
+      lead: "A learning environment built around the way students actually study: reading, watching, capturing ideas, and working with their material.",
+      sections: [
+        {
+          heading: "The Platform",
+          body: "Studenv combines study resources, notes, video learning, and personal knowledge management in a single workspace.",
+        },
+        {
+          heading: "Interactive Workspace",
+          body: "Developed authentication, database models, resource handling, and interactive workspace tools including drawing, sticky notes, images, and connectors.",
+        },
+        {
+          heading: "Engineering Challenges",
+          body: "Investigated performance, caching, database connection, and mobile touch and pointer interaction issues across the application.",
+        },
+      ],
+    },
+  },
+  {
+    id: "setbget",
+    title: "SetBGet",
+    type: "project",
+    createdAt: "2026-11-14T00:00:00.000Z",
+    shortDescription:
+      "A job discovery and application platform with user accounts, job management, and application workflows.",
+    longDescription:
+      "SetBGet is a job discovery and application platform built with JavaScript, Node.js, Express, and MongoDB. It includes REST APIs and data models for users, jobs, saved jobs, and applications.",
+    tags: ["JavaScript", "Node.js", "Express", "MongoDB", "Vercel", "Railway"],
+    detail: {
+      actions: [
+        { label: "Visit SetBGet", href: "https://setbget.in", variant: "filled" },
+      ],
+      lead: "A full-stack job platform focused on the core journey from discovering opportunities to managing applications.",
+      sections: [
+        {
+          heading: "Platform Features",
+          body: "Built REST APIs and data models for users, jobs, saved jobs, and applications.",
+        },
+        {
+          heading: "Authentication and Management",
+          body: "Implemented OTP verification, password recovery, email verification, admin job management, and slug-based job routes.",
+        },
+        {
+          heading: "Localization and Deployment",
+          body: "Worked on English, Hindi, and Indian Bengali localization, deployment troubleshooting, and SEO. The frontend is deployed on Vercel and the backend on Railway.",
+        },
+      ],
+    },
+  },
+  {
+    id: "eduguard",
+    title: "EduGuard",
+    type: "project",
+    createdAt: "2026-11-14T00:00:00.000Z",
+    shortDescription:
+      "A Chrome extension that creates an education-focused YouTube experience by hiding distracting content.",
+    longDescription:
+      "EduGuard is an educational YouTube mode built as a Chrome Extension using Manifest V3. It hides distractions such as Shorts, comments, and the home feed while applying configurable content filtering.",
+    tags: ["JavaScript", "Chrome Extension", "Manifest V3", "Content Scoring"],
+    detail: {
+      actions: [
+        { label: "View EduGuard extension", href: "https://share.google/GTveDoXRb4zZ9f4GM", variant: "filled" },
+      ],
+      lead: "A browser extension designed to make YouTube more useful for focused learning.",
+      sections: [
+        {
+          heading: "Reducing Distractions",
+          body: "Created an education-focused YouTube mode that hides distractions such as Shorts, comments, and the home feed.",
+        },
+        {
+          heading: "Configurable Filtering",
+          body: "Built configurable filtering modes and content-scoring logic, and handled extension storage, permissions, and dynamic page updates.",
+        },
+      ],
+    },
+  },
+  {
     id: "refokus_clone",
     title: "Refokus Website Clone",
     type: "project",
@@ -7,117 +96,16 @@ export const PLOG_ITEMS = [
     shortDescription:
       "Animated Refokus website clone built with React, GSAP, and Framer Motion.",
     longDescription:
-      "Developed a pixel-accurate clone of the Refokus website using React, focusing on smooth UI transitions and modern animation patterns. Implemented advanced scroll-triggered animations with GSAP and interactive motion effects using Framer Motion. Emphasized performance optimization, clean component structure, and responsive design to closely replicate the original user experience.",
+      "Developed a pixel-accurate clone of the Refokus website using React, focusing on smooth UI transitions and modern animation patterns. Implemented scroll-triggered animations with GSAP and interactive motion effects using Framer Motion.",
     tags: ["React", "GSAP", "Framer Motion", "Animations", "Frontend"],
     detail: {
       actions: [
-        {
-          label: "Live Demo",
-          href: "https://refokus-clone-project.netlify.app/",
-          variant: "filled",
-        },
-        {
-          label: "github",
-          href: "https://github.com/bhaskar-f/frontend-projects/tree/main/Refokus",
-          variant: "ghost",
-        },
+        { label: "Live Demo", href: "https://refokus-clone-project.netlify.app/", variant: "filled" },
+        { label: "GitHub", href: "https://github.com/bhaskar-f/frontend-projects/tree/main/Refokus", variant: "ghost" },
       ],
-      lead: "Scaling a frontend from 5 screens to 40 without breaking state, performance, or developer sanity. The goal: structure before chaos.",
+      lead: "A frontend recreation focused on motion, transitions, and responsive presentation.",
       sections: [
-        {
-          heading: "The Problem",
-          body: "As features expanded, state management became messy. Props were drilled across multiple layers, API calls were duplicated, and UI updates caused unnecessary re-renders. Debugging became slower with every new feature added.",
-        },
-        {
-          heading: "What I Built",
-          body: "Re-architected the React application using Context API for global state isolation and modular folder structure. Extracted reusable hooks for API logic, implemented lazy loading with route-based code splitting, and optimized rendering using memoization patterns.",
-          quote:
-            "Good React architecture isn't about writing more components — it's about knowing which components should never know about each other.",
-        },
-        {
-          heading: "The Result",
-          body: "Reduced unnecessary re-renders, improved performance across feature-heavy pages, and made onboarding easier for new developers. Feature delivery became faster because structure replaced guesswork.",
-        },
-      ],
-    },
-  },
-  {
-    id: "design-system",
-    title: "Design System from Scratch",
-    type: "project",
-    createdAt: "2025-12-21T10:15:00.000Z",
-    shortDescription:
-      "Unified reusable UI components and tokens across multiple products.",
-    longDescription:
-      "Built a shared design system with React and Storybook to standardize UI behavior across products. Defined component APIs, design tokens, accessibility patterns, and documentation workflows so teams could ship faster with fewer visual inconsistencies.",
-    tags: ["React", "Storybook", "Design System", "Accessibility"],
-    detail: {
-      actions: [
-        {
-          label: "storybook",
-          href: "https://storybook.js.org/",
-          variant: "filled",
-        },
-        {
-          label: "github",
-          href: "https://github.com/bhaskar-f",
-          variant: "ghost",
-        },
-      ],
-      lead: "Three products, three different component styles, three teams arguing about button padding. The goal: one source of truth.",
-      sections: [
-        {
-          heading: "The Problem",
-          body: "Each product had its own button, its own modal, its own form input - all slightly different. New features took twice as long because every team was rebuilding the same primitives.",
-        },
-        {
-          heading: "What I am trying to Build",
-          body: "A fully typed React component library, documented in Storybook, with a companion Figma kit that stayed in sync. Every component ships with accessibility, dark mode tokens, and tests.",
-          quote:
-            "The real challenge wasn't the code. It was convincing three teams with three different opinions to agree on what a 'button' actually is.",
-        },
-        {
-          heading: "The Result",
-          body: "Design inconsistencies dropped by 70% in the first quarter. New features got measurably faster because developers could reach for shared components instead of building them again.",
-        },
-      ],
-    },
-  },
-  {
-    id: "no-blogs-yet",
-    title: "NO Blogs Yet But comming soon",
-    type: "blog",
-    createdAt: "2026-01-04T08:10:00.000Z",
-    tags: [],
-    shortDescription: "Blogs coming soon",
-  },
-  {
-    id: "portfolio-website",
-    title: "Portfolio Website",
-    type: "project",
-    createdAt: "2026-03-01T11:00:00.000Z",
-    shortDescription:
-      "A personal portfolio built to showcase projects, writing, and contact workflow with a clean editorial interface.",
-    longDescription:
-      "This portfolio website was designed and developed to present my projects, blogs, and background in one focused experience. It combines a minimal visual language with smooth transitions, reusable components, and a custom project detail flow. The site also includes a working contact pipeline connected to a backend email API for direct outreach.",
-    tags: ["React", "Vite", "Framer Motion", "Node.js", "Portfolio"],
-    detail: {
-      lead: "I wanted a portfolio that feels personal, reads clearly, and scales as I ship more work over time.",
-      sections: [
-        {
-          heading: "The Goal",
-          body: "Most portfolio sites either look good but feel generic, or they are functional but hard to read. The target here was to build something that is visually strong, fast, and structured enough to keep evolving with new projects.",
-        },
-        {
-          heading: "What I Built",
-          body: "A React + Vite frontend with reusable sections for featured work, plogs, and detailed project panels. I implemented theme-aware styling, responsive layout behavior, and a dedicated backend endpoint for the contact form with production-safe environment setup and CORS controls.",
-          quote:
-            "A portfolio is not just a gallery. It is a product that communicates how you think.",
-        },
-        {
-          heading: "Current State",
-          body: "The site is live, deployment-ready, and structured for continuous updates. New projects can be added through centralized data objects, and the UI already supports detailed storytelling for each build.",
-        },
+        { heading: "What I Built", body: "Recreated the visual experience with React, GSAP scroll-triggered animations, and Framer Motion interactions." },
       ],
     },
   },
@@ -129,37 +117,17 @@ export const PLOG_ITEMS = [
     shortDescription:
       "A bug log that records root causes, fixes, and unresolved issues so repeated bugs are solved faster.",
     longDescription:
-      "Bug Diary is a debugging workspace for developers who keep seeing the same bugs return. Each issue is stored with reproduction steps, debugging notes, root cause, fix summary, and current status. Instead of restarting research every time a bug comes back, the project turns past debugging work into reusable knowledge.",
+      "Bug Diary is a debugging workspace for developers who keep seeing the same bugs return. Each issue is stored with reproduction steps, debugging notes, root cause, fix summary, and current status.",
     tags: ["Debugging", "MERN", "Productivity", "Issue Tracking"],
     detail: {
       actions: [
-        {
-          label: "live demo",
-          href: "https://bugdiary.vercel.app/",
-          variant: "filled",
-        },
-        {
-          label: "github",
-          href: "https://github.com/bhaskar-f/Bug-diary",
-          variant: "ghost",
-        },
+        { label: "Live Demo", href: "https://bugdiary.vercel.app/", variant: "filled" },
+        { label: "GitHub", href: "https://github.com/bhaskar-f/Bug-diary", variant: "ghost" },
       ],
       lead: "I built this after fixing the same category of bug more than once and realizing my notes were scattered everywhere.",
       sections: [
-        {
-          heading: "The Problem",
-          body: "Debug history usually lives in temporary places: terminal output, chat screenshots, and random files. When the same bug reappears after weeks, the original reasoning is gone and the investigation starts from zero.",
-        },
-        {
-          heading: "What I Built",
-          body: "A focused bug-journaling flow with status stages, searchable entries, and structured fields for repro steps, root cause, and fix notes. The project keeps unresolved bugs visible while preserving solved bug context for future reference.",
-          quote:
-            "Fixing a bug once is good. Fixing it once and never re-researching it again is better.",
-        },
-        {
-          heading: "Current Outcome",
-          body: "Bug Diary now works as a personal debugging memory layer. Repeat-debug time drops because previous decisions, failed attempts, and final fixes are already documented in one place.",
-        },
+        { heading: "The Problem", body: "Debug history often lives in temporary places. When the same bug reappears, the original reasoning is gone and the investigation starts from zero." },
+        { heading: "What I Built", body: "A focused bug-journaling flow with status stages, searchable entries, and structured fields for reproduction steps, root cause, and fix notes." },
       ],
     },
   },
@@ -171,112 +139,40 @@ export const PLOG_ITEMS = [
     shortDescription:
       "A project tracker for ideas across stages like incoming, active, on-hold, and graveyard.",
     longDescription:
-      "Idea Graveyard helps manage side-project ideas before they disappear. It organizes concepts into lifecycle stages such as incoming, building, on hold, and graveyard. The goal is to keep momentum on promising ideas while still preserving paused concepts with enough context to restart later.",
+      "Idea Graveyard helps manage side-project ideas before they disappear. It organizes concepts into lifecycle stages such as incoming, building, on hold, and graveyard.",
     tags: ["Idea Management", "Workflow", "Planning", "Frontend"],
     detail: {
       actions: [
-        {
-          label: "live demo",
-          href: "https://mindstock.vercel.app/",
-          variant: "filled",
-        },
-        {
-          label: "github",
-          href: "https://github.com/bhaskar-f/MindStock",
-          variant: "ghost",
-        },
+        { label: "Live Demo", href: "https://mindstock.vercel.app/", variant: "filled" },
+        { label: "GitHub", href: "https://github.com/bhaskar-f/MindStock", variant: "ghost" },
       ],
       lead: "Most ideas do not fail because they are bad. They fail because they are forgotten between bursts of motivation.",
       sections: [
-        {
-          heading: "The Problem",
-          body: "Idea lists are often just flat notes with no status or structure. Without stages, it is hard to decide what to build next, what to pause, and what to stop investing time in.",
-        },
-        {
-          heading: "What I Built",
-          body: "A lightweight board where each idea moves through explicit states: incoming, building, on hold, and graveyard. This adds decision clarity while preserving enough project context to revive old ideas without starting cold.",
-        },
-        {
-          heading: "The Result",
-          body: "The system improved prioritization and reduced idea churn. Active ideas stay visible, paused ideas remain recoverable, and abandoned ideas are archived intentionally instead of silently disappearing.",
-        },
+        { heading: "What I Built", body: "A lightweight board where each idea moves through explicit states: incoming, building, on hold, and graveyard." },
       ],
     },
   },
-
-  // {
-  //   id: "boring-architecture",
-  //   title: "The Boring Architecture That Saved Us",
-  //   type: "blog",
-  //   createdAt: "2025-10-06T12:05:00.000Z",
-  //   shortDescription:
-  //     "Why simple architecture outperformed unnecessary complexity.",
-  //   longDescription:
-  //     "Detailed how a monolith-first architecture improved delivery speed, observability, and reliability for a small team. Shared decision criteria for when to keep systems simple and when to split services intentionally.",
-  //   tags: ["Architecture", "Monolith", "Scalability", "Team Processes"],
-  // },
   {
-    id: "second-brain",
-    title: "Second Brain: BrainDoc",
+    id: "portfolio-website",
+    title: "Portfolio Website",
     type: "project",
-    createdAt: "2026-03-09T09:45:00.000Z",
+    createdAt: "2026-03-01T11:00:00.000Z",
     shortDescription:
-      "A personal knowledge vault for storing, linking, and retrieving notes with fast recall.",
+      "A personal portfolio built to showcase projects, writing, and contact workflow with a clean editorial interface.",
     longDescription:
-      "BrainDoc is a second-brain system for capturing and organizing personal knowledge. It combines structured notes, tags, backlinks, and search-first navigation so ideas stay connected over time. The project focuses on making context retrieval fast, especially for information that is useful but easy to forget.",
-    tags: ["Knowledge Base", "MERN", "Search", "Productivity"],
+      "This portfolio website presents projects, writing, and background in one focused experience. It combines a minimal visual language with smooth transitions, reusable components, and a custom project detail flow.",
+    tags: ["React", "Vite", "Framer Motion", "Node.js", "Express", "Portfolio"],
     detail: {
-      lead: "I wanted a place where notes are not just stored, but connected well enough to be useful months later.",
+      actions: [
+        { label: "Live Portfolio", href: "https://bhaskarsarkar.vercel.app/", variant: "filled" },
+        { label: "GitHub", href: "https://github.com/bhaskar-f/my-portfolio", variant: "ghost" },
+      ],
+      lead: "I wanted a portfolio that feels personal, reads clearly, and scales as I ship more work over time.",
       sections: [
-        {
-          heading: "The Problem",
-          body: "Traditional note apps store information well but often fail at retrieval. Notes become isolated documents, and finding the right thought later takes more time than writing it did.",
-        },
-        {
-          heading: "What I am Building",
-          body: "BrainDoc combines collections, tags, and linked references with quick full-text search. The structure is designed to support both short capture sessions and deep context rebuilding when returning to a topic after long gaps.",
-          quote:
-            "A second brain should not be a digital drawer. It should feel like a map.",
-        },
-        {
-          heading: "Current State",
-          body: "Core information architecture is defined and the project is being expanded iteratively. The focus is on reliable note linking, clean search UX, and low friction capture so the system remains useful daily.",
-        },
+        { heading: "What I Built", body: "A React and Vite frontend with reusable sections for featured work, project details, and a custom Node.js and Express backend." },
       ],
     },
   },
-  // {
-  //   id: "css-frameworks",
-  //   title: "Why I Stopped Using CSS Frameworks",
-  //   type: "blog",
-  //   createdAt: "2026-02-02T14:00:00.000Z",
-  //   shortDescription:
-  //     "Reflections on maintainability after returning to core CSS.",
-  //   longDescription:
-  //     "Shared lessons from moving away from utility-heavy workflows toward deliberate CSS architecture. Compared iteration speed, debugging cost, and long-term maintainability with practical examples from production UI work.",
-  //   tags: ["CSS", "Opinion", "Frontend"],
-  //   detail: {
-  //     dateLabel: "January 2025",
-  //     readTime: "5 min read",
-  //     lead: "I used Tailwind for two years. Before that, Bootstrap. They're genuinely good tools. But I stopped, and here's what happened.",
-  //     sections: [
-  //       {
-  //         heading: "The Moment I Noticed",
-  //         body: "I was debugging a layout bug and I had no idea what was happening. I knew the class names. I didn't know CSS. There's a difference, and I'd blurred it completely.",
-  //         quote:
-  //           "Knowing a framework is not the same as understanding the thing it abstracts. I had mistaken fluency in Tailwind for fluency in CSS.",
-  //       },
-  //       {
-  //         heading: "What Going Back Felt Like",
-  //         body: "Painful at first. Then freeing. I started understanding why things behaved the way they did. I stopped copy-pasting and started writing CSS I could explain.",
-  //       },
-  //       {
-  //         heading: "The Tradeoff",
-  //         body: "I'm slower on greenfield projects now. But I debug faster, write less CSS, and the code is more intentional. The point isn't 'vanilla CSS is better.' The point is: know what your tools are hiding from you.",
-  //       },
-  //     ],
-  //   },
-  // },
 ];
 
 export const PLOG_TABS = [
@@ -305,9 +201,7 @@ export function groupAndSortByType(items = PLOG_ITEMS) {
   const grouped = {};
 
   for (const item of items) {
-    if (!grouped[item.type]) {
-      grouped[item.type] = [];
-    }
+    if (!grouped[item.type]) grouped[item.type] = [];
     grouped[item.type].push(item);
   }
 
