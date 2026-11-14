@@ -1,46 +1,40 @@
 export default function FeatureWork({ className = "scroll-trigger" }) {
   const works = [
     {
-      heading: "A bug Diary",
+      heading: "Studenv",
       year: "2026",
       description:
-        "A log for your daily bugs, we all get lots of bugs, sometimes we fix them, but when the next time that bug appears we need to redo all the research for that because most of the time we can't remember the steps to fix it that's why this log will help remember the exact steps, and which bugs are not resolved which are the ones i am working on right now.",
-      liveLink: "↗ live demo",
-      livelnk: "https://bugdiary.vercel.app/",
-      githubLink: "↗ github",
-      githublnk: "https://github.com/bhaskar-f/Bug-diary",
+        "A learning workspace combining study resources, notes, video learning, and personal knowledge management.",
+      liveLink: "↗ visit Studenv",
+      livelnk: "https://studenv-online.vercel.app",
     },
     {
-      heading: "Idea Graveyard",
-      year: "2024",
-      description:
-        "Building,incoming,on hold,gravyard stages of ideas.Don't let your idea die.",
-      liveLink: "↗ live demo",
-      livelnk: "https://mindstock.vercel.app/",
-      githubLink: "↗ github",
-      githublnk: "https://github.com/bhaskar-f/MindStock",
-    },
-    {
-      heading: "My Portfolio Website",
+      heading: "SetBGet",
       year: "2026",
       description:
-        "A personal portfolio built to showcase projects, writing, and contact workflow with a clean editorial interface.",
-      liveLink: "↗ live demo",
-      livelnk: "https://bhaskarsarkar.vercel.app/",
-      githubLink: "↗ github",
-      githublnk: "https://github.com/bhaskar-f/my-portfolio",
+        "A job discovery and application platform with authentication, job management, and localization.",
+      liveLink: "↗ visit SetBGet",
+      livelnk: "https://setbget.in",
+    },
+    {
+      heading: "EduGuard",
+      year: "2026",
+      description:
+        "An educational YouTube Chrome extension with distraction hiding and configurable content filtering.",
+      liveLink: "↗ view extension",
+      livelnk: "https://share.google/GTveDoXRb4zZ9f4GM",
     },
   ];
 
   return (
     <div>
       {works.map((work, index) => {
-        let number = index + 1;
+        const number = index + 1;
         const isLast = index === works.length - 1;
         return (
           <Work
             rowClassName={className}
-            key={index}
+            key={work.heading}
             number={number < 10 ? "0" + number : number}
             Heading={work.heading}
             description={work.description}
@@ -81,24 +75,28 @@ function Work({
           {Heading}
           <span className="nav-text text-[.65rem]">{year}</span>
         </h1>
-        <p className="tex-[.55rem] muted">{description}</p>
+        <p className="text-[.75rem] muted">{description}</p>
         <div className="mt-2 nav-text text-[.65rem] flex gap-4">
-          <a
-            href={livelnk}
-            target={isLast ? "_self" : "_blank"}
-            rel={isLast ? undefined : "noopener noreferrer"}
-            className="hover-ink duration-200"
-          >
-            {liveLink}
-          </a>
-          <a
-            href={githublnk}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover-ink duration-200"
-          >
-            {githubLink}
-          </a>
+          {livelnk ? (
+            <a
+              href={livelnk}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover-ink duration-200"
+            >
+              {liveLink}
+            </a>
+          ) : null}
+          {githublnk ? (
+            <a
+              href={githublnk}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover-ink duration-200"
+            >
+              {githubLink}
+            </a>
+          ) : null}
         </div>
       </div>
     </div>
